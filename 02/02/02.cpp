@@ -19,6 +19,7 @@ int main()
 	cin >> nome;
 	cout << "Digite sua idade: ";
 	cin >> idade;
+	cout << endl;
 	cout << "Nome digitado: " << nome << endl;
 	cout << "Idade digitada: " << idade;
 	cin >> nada;
