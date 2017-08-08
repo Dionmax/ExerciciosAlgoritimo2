@@ -1,5 +1,5 @@
 // stdafx.cpp : arquivo de origem que inclui apenas as inclusões padrões
-// ConsoleApplication1.pch será o cabeçalho pré-compilado
+// Trabalhos-07-08.pch será o cabeçalho pré-compilado
 // stdafx.obj conterá as informações de tipo pré-compiladas
 
 #include "stdafx.h"
