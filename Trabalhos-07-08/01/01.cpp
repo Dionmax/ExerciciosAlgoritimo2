@@ -10,20 +10,16 @@ using namespace std;
 int verificacao(int numero)
 {
 	if (numero < 0)
-	{
 		return numero *= -1;
-	}
 	else
-	{
 		return numero;
-	}
 }
 
 void pedido()
 {
 	int numero;
 
-	cout << "Insira um numero inteiro:";
+	cout << "Insira um número inteiro:";
 
 	cin >> numero;
 
@@ -35,7 +31,8 @@ void pedido()
 
 int main()
 {
-	
+	setlocale(LC_ALL, "Portuguese");
+
 	pedido();
 
     return 0;
