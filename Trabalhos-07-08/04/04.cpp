@@ -38,7 +38,10 @@ void solicitacao()
 
 	cin >> letra;
 
-	cout << "A letra inserida foi uma: " << alfabeto(letra);
+	cout << "A letra inserida foi uma " << alfabeto(letra);
+
+	cin.get();
+	cin.get();
 }
 
 int main()
