@@ -17,7 +17,7 @@ string media_aluno(double nota)
 		return "APROVADO";
 }
 
-void pedido()
+void medias_notas()
 {
 	double notas[NUMERO_NOTAS],
 		total=0;
@@ -41,7 +41,7 @@ void pedido()
 
 	cin >> solicitacao;
 
-	if (solicitacao == 's'||'S')
+	if (solicitacao == 's'|| solicitacao == 'S')
 	{
 		for (int cont = 0; cont < NUMERO_NOTAS; cont++)
 			cout << "Nota " << cont + 1 << ": " << notas[cont] << endl;
@@ -57,7 +57,7 @@ int main()
 {
 	setlocale(LC_ALL, "Portuguese");
 
-	pedido();
+	medias_notas();
 
     return 0;
 }
