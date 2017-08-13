@@ -1,4 +1,4 @@
-// 09.cpp : Define o ponto de entrada para a aplicação de console.
+// 09.cpp : Define o ponto de entrada para a aplicação de console. Feito pelo DIONMAX
 //
 
 #include "stdafx.h"
