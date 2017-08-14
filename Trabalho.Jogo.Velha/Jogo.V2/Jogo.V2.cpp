@@ -7,10 +7,10 @@
 
 using namespace std;
 
-const int 
-		TAMANHO = 3,
-		JOGADOR1 = 1,
-		JOGADOR2 = 2;
+const int
+TAMANHO = 3,
+JOGADOR1 = 1,
+JOGADOR2 = 2;
 
 void verificacao_partida()
 {
@@ -19,14 +19,14 @@ void verificacao_partida()
 
 int verificacao_casa(int casa)
 {
-	static int casas_disp[TAMANHO * TAMANHO] = {0};
+	static int casas_disp[TAMANHO * TAMANHO] = { 0 };
 
 	casa = casa - 1;
-	
+
 	if (casas_disp[casa] == 0)
 	{
 		casas_disp[casa] = 1;
-		return casa +1;
+		return casa + 1;
 	}
 	else
 		return casa = -1;
@@ -133,6 +133,5 @@ int main()
 
 	inicio_jogo();
 
-    return 0;
+	return 0;
 }
-

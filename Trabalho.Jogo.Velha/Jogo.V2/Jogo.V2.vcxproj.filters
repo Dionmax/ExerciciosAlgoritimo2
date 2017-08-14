@@ -29,7 +29,7 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Jogo.2.cpp">
+    <ClCompile Include="Jogo.V2.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
   </ItemGroup>
