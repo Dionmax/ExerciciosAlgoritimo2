@@ -1,3 +1,4 @@
+// DecepcoessDaVida.cpp : Define o ponto de entrada para a aplicação de console.
 // Jogo.2.cpp : Define o ponto de entrada para a aplicação de console.
 //
 
@@ -11,6 +12,38 @@ const int
 TAMANHO = 3,
 JOGADOR1 = 1,
 JOGADOR2 = 2;
+
+void fim_partida(char jogada)
+{
+	cout << "Jogador " << jogada << " venceu!";
+}
+
+void verificacao_partida(static string matriz_casas[TAMANHO][TAMANHO], char jogada)
+{
+	if (matriz_casas[0][0] == matriz_casas[0][1] && matriz_casas[0][1] == matriz_casas[0][2])
+		fim_partida(jogada);
+
+	if (matriz_casas[1][0] == matriz_casas[1][1] && matriz_casas[1][1] == matriz_casas[1][2])
+		fim_partida(jogada);
+
+	if (matriz_casas[2][0] == matriz_casas[2][1] && matriz_casas[2][1] == matriz_casas[2][2])
+		fim_partida(jogada);
+
+	if (matriz_casas[0][0] == matriz_casas[1][0] && matriz_casas[1][0] == matriz_casas[2][0])
+		fim_partida(jogada);
+
+	if (matriz_casas[0][1] == matriz_casas[1][1] && matriz_casas[1][1] == matriz_casas[2][1])
+		fim_partida(jogada);
+
+	if (matriz_casas[0][2] == matriz_casas[1][2] && matriz_casas[1][2] == matriz_casas[2][2])
+		fim_partida(jogada);
+
+	if (matriz_casas[0][0] == matriz_casas[1][1] && matriz_casas[1][1] == matriz_casas[2][2])
+		fim_partida(jogada);
+
+	if (matriz_casas[0][2] == matriz_casas[1][1] && matriz_casas[1][1] == matriz_casas[2][0])
+		fim_partida(jogada);
+}
 
 int verificacao_casa(int casa)
 {
@@ -41,6 +74,8 @@ bool matriz_jogo(int casa, char jogada, bool jogada_vez)
 			if (ponteiro_matriz == casa - 1)
 				matriz_casas[linha][coluna] = jogada;
 		}
+
+	verificacao_partida(matriz_casas, jogada);
 
 	for (int cont = 0; cont < TAMANHO; cont++)
 	{
@@ -103,8 +138,6 @@ void inicio_jogo()
 	else
 		jogada_vez = false;
 
-	system("cls");
-
 	while (true)
 	{
 		cout << "Escolha uma casa:" << endl;
@@ -132,3 +165,4 @@ int main()
 
 	return 0;
 }
+
