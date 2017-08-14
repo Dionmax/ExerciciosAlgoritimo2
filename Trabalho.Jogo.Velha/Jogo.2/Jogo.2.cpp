@@ -14,7 +14,7 @@ const int
 
 void verificacao_partida()
 {
-
+	int nadadasdsadsadsa;
 }
 
 int verificacao_casa(int casa)
