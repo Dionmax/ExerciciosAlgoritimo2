@@ -16,12 +16,13 @@ int verificacao_casa(int casa)
 {
 	static int casas_disp[TAMANHO * TAMANHO] = { 0 };
 
-	casa = casa - 1;
+	int verificacao_casa = casa;
+	verificacao_casa = casa - 1;
 
-	if (casas_disp[casa] == 0)
+	if (casas_disp[verificacao_casa] == 0)
 	{
-		casas_disp[casa] = 1;
-		return casa + 1;
+		casas_disp[verificacao_casa] = 1;
+		return casa;
 	}
 	else
 		return casa = -1;
