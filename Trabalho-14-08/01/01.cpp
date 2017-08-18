@@ -55,7 +55,7 @@ void valores_crescente(int valores[])
 		cout << valores[cont] << ",";
 }
 
-void randon_array()
+void random_array()
 {
 	int numeros[TAMANHO];
 
@@ -81,7 +81,7 @@ int main()
 
 	srand(time(NULL));
 
-	randon_array();
+	random_array();
 
     return 0;
 }
