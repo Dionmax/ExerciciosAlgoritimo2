@@ -21,7 +21,7 @@ int dobro(int numero)
 	return numero * 2;
 }
 
-void operacoes()
+void menu()
 {
 	bool manter_ativo = true;
 
@@ -68,7 +68,7 @@ int main()
 {
 	setlocale(LC_ALL, "Portuguese");
 
-	operacoes();
+	menu();
 
     return 0;
 }
