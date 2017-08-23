@@ -1,5 +1,5 @@
 // Funçãoteste.cpp: Define o ponto de entrada para a aplicação de console.
-//
+// "I do Problems"
 
 #include "stdafx.h"
 #include "iostream"
@@ -74,10 +74,7 @@ int main()
 	setlocale(LC_ALL, "Portuguese");
 	srand(time(NULL));
 
-	int vetor[TAMANHO] = { 3,2,4,5,1, },
-		matriz[TAMANHO][TAMANHO];
-
-	
+	int vetor[TAMANHO] = { 3,2,4,5,1, };
 
 	testes_bubbleSort(vetor);
 	testes_vetores(vetor);
