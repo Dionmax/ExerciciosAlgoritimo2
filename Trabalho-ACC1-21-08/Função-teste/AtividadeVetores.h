@@ -119,7 +119,7 @@ int maiorValorEmMatriz(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ], int escopoBus
 
 		for (int contador = 0; contador < TAMANHO_MATRIZ; contador++)
 			for (int indice = 0; indice < TAMANHO_MATRIZ; indice++)
-				if (matriz[contador][indice] > maiorValor || (contador == 0 && indice ==0))
+				if (matriz[contador][indice] > maiorValor || (contador == 0 && indice == 0))
 					maiorValor = matriz[contador][indice];
 		break;
 
