@@ -81,26 +81,25 @@ int maiorValorEmMatriz(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ], int escopoBus
 	switch (escopoBusca)
 	{
 	case ESCOPO_BUSCA_MATRIZ_DIAGONALPRINCIPAL:
+
 		for (int contador = 0; contador < TAMANHO_MATRIZ; contador++)
 			for (int indice = 0; indice < TAMANHO_MATRIZ; indice++)
-			{
 				if (contador == indice)
 					if (matriz[contador][indice] > maiorValor || contador == 0)
 						maiorValor = matriz[contador][indice];
-			}
 		break;
 
 	case ESCOPO_BUSCA_MATRIZ_DIAGONALSECUNDARIA:
+
 		for (int contador = 0; contador < TAMANHO_MATRIZ; contador++)
 			for (int indice = 0; indice < TAMANHO_MATRIZ; indice++)
-			{
 				if ((TAMANHO_MATRIZ - 1) - contador == indice)
 					if (matriz[contador][indice] > maiorValor || contador == 0)
 						maiorValor = matriz[contador][indice];
-			}
 		break;
 
 	case ESCOPO_BUSCA_MATRIZ_DIAGONAIS:
+
 		for (int contador = 0; contador < TAMANHO_MATRIZ; contador++)
 		{
 			for (int indice = 0; indice < TAMANHO_MATRIZ; indice++)
@@ -117,12 +116,11 @@ int maiorValorEmMatriz(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ], int escopoBus
 		break;
 
 	case ESCOPO_BUSCA_MATRIZ_COMPLETA:
+
 		for (int contador = 0; contador < TAMANHO_MATRIZ; contador++)
 			for (int indice = 0; indice < TAMANHO_MATRIZ; indice++)
-			{
-				if (matriz[contador][indice] > maiorValor || contador == 0)
+				if (matriz[contador][indice] > maiorValor || (contador == 0 && indice ==0))
 					maiorValor = matriz[contador][indice];
-			}
 		break;
 
 	default:
@@ -138,26 +136,25 @@ int menorValorEmMatriz(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ], int escopoBus
 	switch (escopoBusca)
 	{
 	case ESCOPO_BUSCA_MATRIZ_DIAGONALPRINCIPAL:
+
 		for (int contador = 0; contador < TAMANHO_MATRIZ; contador++)
 			for (int indice = 0; indice < TAMANHO_MATRIZ; indice++)
-			{
 				if (contador == indice)
 					if (matriz[contador][indice] < menorValor || contador == 0)
 						menorValor = matriz[contador][indice];
-			}
 		break;
 
 	case ESCOPO_BUSCA_MATRIZ_DIAGONALSECUNDARIA:
+
 		for (int contador = 0; contador < TAMANHO_MATRIZ; contador++)
 			for (int indice = 0; indice < TAMANHO_MATRIZ; indice++)
-			{
 				if ((TAMANHO_MATRIZ - 1) - contador == indice)
 					if (matriz[contador][indice] < menorValor || contador == 0)
 						menorValor = matriz[contador][indice];
-			}
 		break;
 
 	case ESCOPO_BUSCA_MATRIZ_DIAGONAIS:
+
 		for (int contador = 0; contador < TAMANHO_MATRIZ; contador++)
 			for (int indice = 0; indice < TAMANHO_MATRIZ; indice++)
 			{
@@ -172,12 +169,11 @@ int menorValorEmMatriz(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ], int escopoBus
 		break;
 
 	case ESCOPO_BUSCA_MATRIZ_COMPLETA:
+
 		for (int contador = 0; contador < TAMANHO_MATRIZ; contador++)
 			for (int indice = 0; indice < TAMANHO_MATRIZ; indice++)
-			{
-				if (matriz[contador][indice] < menorValor || contador == 0)
+				if (matriz[contador][indice] < menorValor || (contador == 0 && indice == 0))
 					menorValor = matriz[contador][indice];
-			}
 		break;
 
 	default:
