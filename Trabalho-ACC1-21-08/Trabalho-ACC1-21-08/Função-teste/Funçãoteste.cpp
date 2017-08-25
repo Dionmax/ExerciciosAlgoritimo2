@@ -39,7 +39,6 @@ void testes_matrizes()
 	cout << endl << "O menor valor da diagonal secundaria da matriz é: " << menorValorEmMatriz(matriz, ESCOPO_BUSCA_MATRIZ_DIAGONALSECUNDARIA);
 	cout << endl << "O menor valor das diagonais da matriz é: " << menorValorEmMatriz(matriz, ESCOPO_BUSCA_MATRIZ_DIAGONAIS);
 	cout << endl << "O menor valor da matriz é: " << menorValorEmMatriz(matriz, ESCOPO_BUSCA_MATRIZ_COMPLETA);
-		
 }
 
 void testes_vetores(int vetor[])
