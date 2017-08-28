@@ -201,7 +201,8 @@ bool validarEmail(string email)
 {
 	int tamanho_email = email.size(),
 		casa_antes = 0,
-		casas_depois = 0;
+		casas_depois = 0,
+		tamanho_minimo_parte_antes = 4;
 
 	bool email_validado = false;
 
@@ -221,6 +222,18 @@ bool validarEmail(string email)
 		}
 
 		casa_antes++;
+	}
+
+	if (casa_antes > tamanho_minimo_parte_antes)
+	{
+		cout << "Tamanho do email invalido!" << endl;
+		return false;
+	}
+
+	if (casas_depois > tamanho_minimo_parte_antes)
+	{
+		cout << "Tamanho do email invalido!" << endl;
+		return false;
 	}
 
 	return email_validado;

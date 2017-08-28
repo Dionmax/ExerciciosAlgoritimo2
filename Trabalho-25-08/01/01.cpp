@@ -110,7 +110,7 @@ int main()
 
 	//teste_senha();
 
-	teste_email();
+	//teste_email();
 
 	cin.get();
 	cin.get();
