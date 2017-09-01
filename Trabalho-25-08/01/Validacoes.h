@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "iostream"
 #include "string"
+#include <sstream>
 
 using namespace std;
 
@@ -52,9 +53,13 @@ bool validarNumeroTelefoneCelular(string telefone, string &mensagem_erro)
 	if (contador_posicao_numero != tamanho_numero)
 	{
 		numeros_faltando = tamanho_numero - contador_posicao_numero;
-		numeros_faltando_texto = numeros_faltando;
 
-		mensagem_erro = "ERRO!\nTamanho do numero inválido.\nFalta ",numeros_faltando," numero(s).\nExemplos: (47)9912-3456 / 4799123456 / 47 9912-3456";
+		stringstream convertido;
+		convertido << numeros_faltando;
+
+		numeros_faltando_texto += convertido.str();
+
+		mensagem_erro = "ERRO!\nTamanho do numero inválido.\nFalta "+numeros_faltando_texto+" numero(s).\nExemplos: (47)9912-3456 / 4799123456 / 47 9912-3456";
 
 		return  false;
 	}
