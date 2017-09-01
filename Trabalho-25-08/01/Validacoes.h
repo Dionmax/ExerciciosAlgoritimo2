@@ -54,10 +54,10 @@ bool validarNumeroTelefoneCelular(string telefone, string &mensagem_erro)
 	{
 		numeros_faltando = tamanho_numero - contador_posicao_numero;
 
-		stringstream convertido;
-		convertido << numeros_faltando;
+		stringstream conversor_aux;
+		conversor_aux << numeros_faltando;
 
-		numeros_faltando_texto += convertido.str();
+		numeros_faltando_texto += conversor_aux.str();
 
 		mensagem_erro = "ERRO!\nTamanho do numero inválido.\nFalta "+numeros_faltando_texto+" numero(s).\nExemplos: (47)9912-3456 / 4799123456 / 47 9912-3456";
 
@@ -80,14 +80,16 @@ bool validarNumeroCPF(string cpf, string &mensagem_erro)
 		tamanho_maximo_string = 14,
 		contador_posicao_numero = 0,
 		tamanho_cpf = 11,
-		numeros_na_string = 0;
+		numeros_na_string = 0,
+		tamanho_cpf_faltando = 0;
 
 	char numero_cpf[11];
 
+	string tamanho_cpf_faltando_texto = "";
+
 	if (tamanho_string > tamanho_maximo_string)
 	{
-		cout << "Tamanho maximo de digitos excedido!" << endl;
-		cout << "Exemplo: '123-456-789-00' / '12345678900'";
+		mensagem_erro = "Tamanho maximo de digitos excedido!\nExemplo: '123-456-789-00' / '12345678900'";
 
 		return false;
 	}
@@ -99,9 +101,7 @@ bool validarNumeroCPF(string cpf, string &mensagem_erro)
 
 		if (numeros_na_string > tamanho_cpf)
 		{
-			cout << "ERRO!" << endl;
-			cout << "Quantidade de numeros excedidos." << endl;
-			cout << "Tamanho maximo: " << tamanho_cpf;
+			mensagem_erro = "ERRO!\nQuantidade de numeros excedidos.\nTamanho maximo: 14";
 
 			return false;
 		}
@@ -118,8 +118,14 @@ bool validarNumeroCPF(string cpf, string &mensagem_erro)
 
 	if (contador_posicao_numero != tamanho_cpf)
 	{
-		cout << "Quantidade de digitos invalida!" << endl;
-		cout << "Faltou " << tamanho_cpf - contador_posicao_numero << " digito(s)";
+		tamanho_cpf_faltando = tamanho_cpf - contador_posicao_numero;
+
+		stringstream conversor_aux;
+		conversor_aux << tamanho_cpf_faltando;
+
+		tamanho_cpf_faltando_texto += conversor_aux.str();
+
+		mensagem_erro = "Quantidade de digitos invalida!\nFaltou "+tamanho_cpf_faltando_texto+" digito(s)";
 		
 		return false;
 	}
@@ -131,14 +137,10 @@ bool dividirDoisNumeros(int numero1, int numero2, string &mensagem_erro)
 {
 	if (numero2 == 0)
 	{
-		cout << "Não possivel fazer divisão por Zero (0).";
+		mensagem_erro ="Não possivel fazer divisão por Zero (0).";
 
 		return false;
 	}
-
-	if (numero1 % 2 != 0 || numero2 % 2 != 0)
-		cout << "Possivel alteracao no valor final na conta. " << endl << "Exception: Numero real.";
-
 
 	return true;
 }
@@ -153,15 +155,7 @@ bool escolherOpcaoMenu(int opcao, int *opcoes_validas, int numero_de_opcoes, str
 		}
 	}
 	
-	cout << "Opcao invalida!" << endl;
-	cout << "Segue abaixo a lista de opcoes validas" << endl;
-
-	for (int i = 0; i < numero_de_opcoes; i++)
-	{
-		cout << opcoes_validas[i] << endl;
-	}
-
-	cout << endl;
+	mensagem_erro = "Opcao invalida!";
 
 	return false;
 }
@@ -173,7 +167,7 @@ bool validarSenha(string campoSenha, string campoConfirmaSenha, string &mensagem
 
 	if (tamanho_senha < tamanho_minimo_senha)
 	{
-		cout << "Numero de caracters insuficientes!" <<endl;
+		mensagem_erro = "Numero de caracters insuficientes!";
 		return false;
 	}
 
@@ -181,7 +175,7 @@ bool validarSenha(string campoSenha, string campoConfirmaSenha, string &mensagem
 		return true;
 	else
 	{
-		cout << "Senhas não conferem!";
+		mensagem_erro = "Senhas não conferem!";
 		return false;
 	}
 
@@ -217,13 +211,13 @@ bool validarEmail(string email, string &mensagem_erro)
 
 	if (casa_antes > tamanho_minimo_parte_antes)
 	{
-		cout << "Tamanho do email invalido!" << endl;
+		mensagem_erro = "Tamanho do email invalido!";
 		return false;
 	}
 
 	if (casas_depois > tamanho_minimo_parte_antes)
 	{
-		cout << "Tamanho do email invalido!" << endl;
+		mensagem_erro = "Tamanho do email invalido!";
 		return false;
 	}
 

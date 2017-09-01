@@ -12,18 +12,22 @@ using namespace std;
 
 void teste_email()
 {
-	string email;
+	string email, mensagem_erro = "";
 
 	cout << "Insira seu e-mail: ";
 	cin >> email;
 
-	//cout << "Seu email foi valido: " << validarEmail(email);
+	if (validarEmail(email, mensagem_erro))
+		cout << "Seu email foi valido!";
+	else
+		cout << mensagem_erro;
 }
 
 void teste_senha()
 {
 	string senha,
-		senha_confimacao;
+		senha_confimacao,
+		mensagem_erro = "";
 
 	cout << "Digite sua senha: " << endl;
 	cin >> senha;
@@ -31,7 +35,10 @@ void teste_senha()
 	cout << "Confirma sua senha: " << endl;
 	cin >> senha_confimacao;
 
-	//cout << endl << "As senhas conferem: " << validarSenha(senha, senha_confimacao);
+	if (validarSenha(senha, senha_confimacao, mensagem_erro))
+		cout << endl << "As senhas conferem!";
+	else
+		cout << mensagem_erro;
 }
 
 void teste_opcao()
@@ -39,6 +46,8 @@ void teste_opcao()
 	int opcao,
 		lista_de_opcao[5] = { 1,2,3,4,5 },
 		numero_de_opcoes = 5;
+
+	string mensagem_erro = "";
 
 	cout << "Lista de opcao: " << endl;
 
@@ -52,7 +61,10 @@ void teste_opcao()
 	cout << "Escolha sua opcao: ";
 	cin >> opcao;
 
-	//cout << "A opcao escolhida foi valida: " << escolherOpcaoMenu(opcao, lista_de_opcao,numero_de_opcoes);
+	if (escolherOpcaoMenu(opcao, lista_de_opcao, numero_de_opcoes, mensagem_erro))
+		cout << "A opcao escolhida foi valida: " << endl;
+	else
+		cout << mensagem_erro;
 }
 
 void teste_divisao()
@@ -69,22 +81,28 @@ void teste_divisao()
 
 	validado = dividirDoisNumeros(numero_um, numero_dois,mensagem_erro);
 
-	cout << endl << "E possivel fazer a divisao: " << validado;
-
 	cout << endl << endl;
 
 	if (validado)
-		cout << endl << "Valor da divisao: " << numero_um / numero_dois;
+	{
+		cout << endl << "E possivel fazer a divisao!" << endl;
+		cout << "Valor da divisao: " << numero_um / numero_dois;
+	}
+	else
+		cout << mensagem_erro;
 }
 
 void teste_cpf()
 {
-	string cpf;
+	string cpf, mensagem_erro = "";
 
-	cout << "Digite seu cpf" << endl;
+	cout << "Digite seu cpf: " << endl;
 	getline(cin, cpf);
 
-	//cout << endl << "O numero do cpf foi validado: " << validarNumeroCPF(cpf) << endl;
+	if (validarNumeroCPF(cpf, mensagem_erro))
+		cout << endl << "O numero do cpf foi validado!" << endl;
+	else
+		cout << mensagem_erro;
 }
 
 void teste_numero_celular()
@@ -106,9 +124,9 @@ int main()
 {
 	setlocale(LC_ALL, "Portuguese");
 
-	teste_numero_celular();
+	//teste_numero_celular();
 
-	//teste_cpf();
+	teste_cpf();
 
 	//teste_divisao();
 
