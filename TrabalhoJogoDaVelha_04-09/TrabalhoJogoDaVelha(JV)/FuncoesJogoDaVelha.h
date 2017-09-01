@@ -10,6 +10,23 @@
 
 using namespace std;
 
+bool verificar_jogada(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], int casa_jogada)
+{
+	int ponteiro_matriz;
+
+	for (int coluna = 0; coluna < TAMANHO_MATRIZ_JOGO; coluna++)
+		for (int linha = 0; linha < TAMANHO_MATRIZ_JOGO; linha++)
+		{
+			ponteiro_matriz = linha * TAMANHO_MATRIZ_JOGO + coluna;
+
+			if (ponteiro_matriz == casa_jogada - 1)
+				if (matriz_jogo[linha][coluna] != "")
+					return false;
+		}
+
+	return true;
+}
+
 bool alocar_jogada(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], char jogador,int casa_jogada, bool vez_jogador)
 {
 	int ponteiro_matriz;
