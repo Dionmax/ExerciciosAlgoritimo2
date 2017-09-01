@@ -17,7 +17,7 @@ void teste_email()
 	cout << "Insira seu e-mail: ";
 	cin >> email;
 
-	cout << "Seu email foi valido: " << validarEmail(email);
+	//cout << "Seu email foi valido: " << validarEmail(email);
 }
 
 void teste_senha()
@@ -31,7 +31,7 @@ void teste_senha()
 	cout << "Confirma sua senha: " << endl;
 	cin >> senha_confimacao;
 
-	cout << endl << "As senhas conferem: " << validarSenha(senha, senha_confimacao);
+	//cout << endl << "As senhas conferem: " << validarSenha(senha, senha_confimacao);
 }
 
 void teste_opcao()
@@ -42,7 +42,7 @@ void teste_opcao()
 
 	cout << "Lista de opcao: " << endl;
 
-	for (size_t i = 0; i < numero_de_opcoes; i++)
+	for (int i = 0; i < numero_de_opcoes; i++)
 	{
 		cout << lista_de_opcao[i] << endl;
 	}
@@ -52,7 +52,7 @@ void teste_opcao()
 	cout << "Escolha sua opcao: ";
 	cin >> opcao;
 
-	cout << "A opcao escolhida foi valida: " << escolherOpcaoMenu(opcao, lista_de_opcao,numero_de_opcoes);
+	//cout << "A opcao escolhida foi valida: " << escolherOpcaoMenu(opcao, lista_de_opcao,numero_de_opcoes);
 }
 
 void teste_divisao()
@@ -62,10 +62,12 @@ void teste_divisao()
 
 	bool validado;
 
+	string mensagem_erro = "";
+
 	cout << "Digite dois numeros: " << endl;
 	cin >> numero_um >> numero_dois;
 
-	validado = dividirDoisNumeros(numero_um, numero_dois);
+	validado = dividirDoisNumeros(numero_um, numero_dois,mensagem_erro);
 
 	cout << endl << "E possivel fazer a divisao: " << validado;
 
@@ -82,25 +84,29 @@ void teste_cpf()
 	cout << "Digite seu cpf" << endl;
 	getline(cin, cpf);
 
-	cout << endl << "O numero do cpf foi validado: " << validarNumeroCPF(cpf) << endl;
+	//cout << endl << "O numero do cpf foi validado: " << validarNumeroCPF(cpf) << endl;
 }
 
 void teste_numero_celular()
 {
-	string numero;
+	string numero,
+		mensagem_erro = "";
 
 	cout << "Digite seu numero: ";
 
 	getline(cin, numero);
 
-	cout << endl << "O numero digitado foi valido: " << validarNumeroTelefoneCelular(numero) << endl;
+	if (validarNumeroTelefoneCelular(numero, mensagem_erro))
+		cout << endl << "O numero digitado é valido " << endl;
+	else
+		cout << mensagem_erro;
 }
 
 int main()
 {
 	setlocale(LC_ALL, "Portuguese");
 
-	//teste_numero_celular();
+	teste_numero_celular();
 
 	//teste_cpf();
 

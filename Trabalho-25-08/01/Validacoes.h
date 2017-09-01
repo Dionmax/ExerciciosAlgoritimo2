@@ -7,53 +7,40 @@
 
 using namespace std;
 
-bool validarNumeroTelefoneCelular(string telefone);
-
-bool validarNumeroCPF(string cpf);
-
-bool dividirDoisNumeros(int numero1, int numero2);
-
-bool escolherOpcaoMenu(int opcao, int *opcoes_validas, int numero_de_opcoes);
-
-bool validarSenha(string campoSenha, string campoConfirmaSenha);
-
-bool validarEmail(string email);
-
-bool validarNumeroTelefoneCelular(string telefone)
+bool validarNumeroTelefoneCelular(string telefone, string &mensagem_erro)
 {
 	int tamanho_string = telefone.size(),
 		contador_posicao_numero = 0,
 		tamanho_numero = 10,
 		tamanho_maximo_string = 14,
-		numeros_na_string = 0;
+		numeros_na_string = 0,
+		numeros_faltando = 0;
 
 	char numero_telefone[10];
 
+	string numeros_faltando_texto = "";
+
 	if (tamanho_string >= tamanho_maximo_string)
 	{
-		cout << "ERRO!" << endl;
-		cout << "Quantidade de digitos excedidos.";
-		cout << "Exemplos: (47)9912-3456 / 4799123456 / 47 9912-3456";
+		mensagem_erro = "ERRO!\nQuantidade de digitos excedidos.\nExemplos: (47)9912-3456 / 4799123456 / 47 9912-3456";
 
 		return false;
 	}
 
-	for (size_t indice = 0; indice < tamanho_string; indice++)
+	for (int indice = 0; indice < tamanho_string; indice++)
 	{
 		if (telefone[indice] >= '0' && telefone[indice] <= '9')
 			numeros_na_string++;
 
 		if (numeros_na_string > tamanho_numero)
 		{
-			cout << "ERRO!" << endl;
-			cout << "Quantidade de numeros excedidos." << endl;
-			cout << "Tamanho maximo: " << tamanho_numero;
+			mensagem_erro = "ERRO!\nQuantidade de numeros excedidos.\nExemplos: (47)9912-3456 / 4799123456 / 47 9912-3456";
 
 			return false;
 		}
 	}
 
-	for (size_t indice = 0; indice < tamanho_string; indice++)
+	for (int indice = 0; indice < tamanho_string; indice++)
 	{
 		if (telefone[indice] >= '0' && telefone[indice] <= '9')
 		{
@@ -64,18 +51,17 @@ bool validarNumeroTelefoneCelular(string telefone)
 
 	if (contador_posicao_numero != tamanho_numero)
 	{
-		cout << "ERRO!" << endl;
-		cout << "Tamanho do numero inválido." << endl;
-		cout << "Falta " << tamanho_numero - contador_posicao_numero << " numero(s).";
-		cout << "Exemplos: (47)9912-3456 / 4799123456 / 47 9912-3456";
+		numeros_faltando = tamanho_numero - contador_posicao_numero;
+		numeros_faltando_texto = numeros_faltando;
+
+		mensagem_erro = "ERRO!\nTamanho do numero inválido.\nFalta ",numeros_faltando," numero(s).\nExemplos: (47)9912-3456 / 4799123456 / 47 9912-3456";
 
 		return  false;
 	}
 
 	if (numero_telefone[0] != '4' && numero_telefone[0] != '7')
 	{
-		cout << "Codigo DDD inválido" << endl;
-		cout << "Area de cobertura permitida: (47)";
+		mensagem_erro = "Codigo DDD inválido\nArea de cobertura permitida: (47)";
 
 		return  false;
 	}
@@ -83,7 +69,7 @@ bool validarNumeroTelefoneCelular(string telefone)
 	return true;
 }
 
-bool validarNumeroCPF(string cpf)
+bool validarNumeroCPF(string cpf, string &mensagem_erro)
 {
 	int tamanho_string = cpf.size(),
 		tamanho_maximo_string = 14,
@@ -101,7 +87,7 @@ bool validarNumeroCPF(string cpf)
 		return false;
 	}
 
-	for (size_t indice = 0; indice < tamanho_string; indice++)
+	for (int indice = 0; indice < tamanho_string; indice++)
 	{
 		if (cpf[indice] >= '0' && cpf[indice] <= '9')
 			numeros_na_string++;
@@ -116,7 +102,7 @@ bool validarNumeroCPF(string cpf)
 		}
 	}
 
-	for (size_t indice = 0; indice < tamanho_string; indice++)
+	for (int indice = 0; indice < tamanho_string; indice++)
 	{
 		if (cpf[indice] >= '0' && cpf[indice] <= '9')
 		{
@@ -136,7 +122,7 @@ bool validarNumeroCPF(string cpf)
 	return true;
 }
 
-bool dividirDoisNumeros(int numero1, int numero2)
+bool dividirDoisNumeros(int numero1, int numero2, string &mensagem_erro)
 {
 	if (numero2 == 0)
 	{
@@ -152,9 +138,9 @@ bool dividirDoisNumeros(int numero1, int numero2)
 	return true;
 }
 
-bool escolherOpcaoMenu(int opcao, int *opcoes_validas, int numero_de_opcoes)
+bool escolherOpcaoMenu(int opcao, int *opcoes_validas, int numero_de_opcoes, string &mensagem_erro)
 {
-	for (size_t i = 0; i < numero_de_opcoes; i++)
+	for (int i = 0; i < numero_de_opcoes; i++)
 	{
 		if (opcao == opcoes_validas[i])
 		{
@@ -165,7 +151,7 @@ bool escolherOpcaoMenu(int opcao, int *opcoes_validas, int numero_de_opcoes)
 	cout << "Opcao invalida!" << endl;
 	cout << "Segue abaixo a lista de opcoes validas" << endl;
 
-	for (size_t i = 0; i < numero_de_opcoes; i++)
+	for (int i = 0; i < numero_de_opcoes; i++)
 	{
 		cout << opcoes_validas[i] << endl;
 	}
@@ -175,7 +161,7 @@ bool escolherOpcaoMenu(int opcao, int *opcoes_validas, int numero_de_opcoes)
 	return false;
 }
 
-bool validarSenha(string campoSenha, string campoConfirmaSenha)
+bool validarSenha(string campoSenha, string campoConfirmaSenha, string &mensagem_erro)
 {
 	int tamanho_senha = campoSenha.size(),
 		tamanho_minimo_senha = 8;
@@ -197,7 +183,7 @@ bool validarSenha(string campoSenha, string campoConfirmaSenha)
 	return false;
 }
 
-bool validarEmail(string email)
+bool validarEmail(string email, string &mensagem_erro)
 {
 	int tamanho_email = email.size(),
 		casa_antes = 0,
@@ -206,11 +192,11 @@ bool validarEmail(string email)
 
 	bool email_validado = false;
 
-	for (size_t indice = 0; indice < tamanho_email; indice++)
+	for (int indice = 0; indice < tamanho_email; indice++)
 	{
 		if (email[indice] == '@')
 		{
-			for (size_t contador = indice; contador < tamanho_email; contador++)
+			for (int contador = indice; contador < tamanho_email; contador++)
 			{
 				casas_depois++;
 
