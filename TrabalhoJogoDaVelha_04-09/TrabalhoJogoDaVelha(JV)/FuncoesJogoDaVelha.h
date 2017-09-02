@@ -4,15 +4,16 @@
 #include "stdafx.h"
 #include "string"
 
+using namespace std;
+
 #define TAMANHO_MATRIZ_JOGO 3
 #define JOGADOR_X 'X'
 #define JOGADOR_O 'O'
 
-const int ZERO = 0,
-		UM = 1,
-		DOIS = 2;
-
-using namespace std;
+const int 
+	ZERO = 0,
+	UM = 1,
+	DOIS = 2;
 
 bool verificar_diogonal_secundaria(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 {
