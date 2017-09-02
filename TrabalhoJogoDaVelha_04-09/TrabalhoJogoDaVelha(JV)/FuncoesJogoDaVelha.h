@@ -8,35 +8,72 @@
 #define JOGADOR_X 'X'
 #define JOGADOR_O 'O'
 
+const int ZERO = 0,
+		UM = 1,
+		DOIS = 2;
+
 using namespace std;
+
+bool verificar_diogonal_secundaria(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
+{
+	bool fim_de_jogo = false;
+
+	if (matriz_jogo[ZERO][DOIS] == matriz_jogo[UM][UM] && matriz_jogo[ZERO][DOIS] != "")
+		if (matriz_jogo[ZERO][DOIS] == matriz_jogo[DOIS][ZERO])
+			fim_de_jogo = true;
+
+	return fim_de_jogo;
+}
+
+bool verificar_digonal_primaria(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
+{
+	bool fim_de_jogo = false;
+
+		if (matriz_jogo[ZERO][ZERO] == matriz_jogo[UM][UM] && matriz_jogo[ZERO][ZERO] != "")
+			if (matriz_jogo[ZERO][ZERO] == matriz_jogo[DOIS][DOIS])
+				fim_de_jogo = true;
+
+	return fim_de_jogo;
+}
+
+bool verificar_sentido_vertical(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
+{
+	bool fim_de_jogo = false;
+
+	for (int contador = 0; contador < TAMANHO_MATRIZ_JOGO; contador++)
+		if (matriz_jogo[ZERO][contador] == matriz_jogo[UM][contador] && matriz_jogo[ZERO][contador] != "")
+			if (matriz_jogo[ZERO][contador] == matriz_jogo[DOIS][contador])
+				fim_de_jogo = true;
+
+	return fim_de_jogo;
+}
+
+bool verificar_sentido_horizontal(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
+{
+	bool fim_de_jogo = false;
+
+	for(int contador = 0;contador < TAMANHO_MATRIZ_JOGO; contador ++)
+		if (matriz_jogo[contador][ZERO] == matriz_jogo[contador][UM] && matriz_jogo[contador][ZERO] != "")
+			if (matriz_jogo[contador][ZERO] == matriz_jogo[contador][DOIS])
+				fim_de_jogo = true;
+
+	return fim_de_jogo;
+}
 
 bool verificar_ganhador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 {
 	bool fim_de_jogo = false;
 
-	for (int linha = 0; linha < TAMANHO_MATRIZ_JOGO; linha++)
-		for (int coluna = 0; coluna < TAMANHO_MATRIZ_JOGO -1; coluna++)
-		{
-			if (matriz_jogo[linha][coluna] == matriz_jogo[linha][coluna + 1] && matriz_jogo[linha][coluna] != "")
-				if (matriz_jogo[linha][coluna] == matriz_jogo[linha][coluna + 2] && matriz_jogo[linha][coluna] != "")
-				fim_de_jogo = true;
-		}
+	fim_de_jogo = verificar_sentido_horizontal(matriz_jogo);
 
-	for (int linha = 0; linha < TAMANHO_MATRIZ_JOGO -1; linha++)
-		for (int coluna = 0; coluna < TAMANHO_MATRIZ_JOGO; coluna++)
-		{
-			if (matriz_jogo[linha][coluna] == matriz_jogo[linha + 1][coluna] && matriz_jogo[linha][coluna] != "")
-				if (matriz_jogo[linha][coluna] == matriz_jogo[linha + 2][coluna] && matriz_jogo[linha][coluna] != "")
-					fim_de_jogo = true;
-		}
+	if (!fim_de_jogo)
+		fim_de_jogo = verificar_sentido_vertical(matriz_jogo);
 
-	for (int linha = 0; linha < TAMANHO_MATRIZ_JOGO - 1; linha++)
-		for (int coluna = TAMANHO_MATRIZ_JOGO - 1; coluna > 0; coluna--)
-		{
-			if (matriz_jogo[linha][coluna] == matriz_jogo[linha + 1][coluna -1] && matriz_jogo[linha][coluna] != "")
-				if (matriz_jogo[linha][coluna] == matriz_jogo[linha + 2][coluna - 2] && matriz_jogo[linha][coluna] != "")
-					fim_de_jogo = true;
-		}
+	if (!fim_de_jogo)
+		fim_de_jogo = verificar_digonal_primaria(matriz_jogo);
+
+	if (!fim_de_jogo)
+		fim_de_jogo = verificar_diogonal_secundaria(matriz_jogo);
 
 	return fim_de_jogo;
 }
