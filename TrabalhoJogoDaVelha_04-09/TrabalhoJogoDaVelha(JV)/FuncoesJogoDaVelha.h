@@ -10,10 +10,11 @@ using namespace std;
 #define JOGADOR_X 'X'
 #define JOGADOR_O 'O'
 
-const int 
+const int
 	ZERO = 0,
 	UM = 1,
-	DOIS = 2;
+	DOIS = 2,
+	DEZ = 10;
 
 bool verificar_diogonal_secundaria(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 {
@@ -83,6 +84,8 @@ bool verificar_jogada(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], int casa_jogada
 {
 	int ponteiro_matriz;
 
+	bool jogada_valida = true;
+
 	for (int linha = 0; linha < TAMANHO_MATRIZ_JOGO; linha++)
 		for (int coluna = 0; coluna < TAMANHO_MATRIZ_JOGO; coluna++)
 		{
@@ -90,10 +93,15 @@ bool verificar_jogada(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], int casa_jogada
 
 			if (ponteiro_matriz == casa_jogada - 1)
 				if (matriz_jogo[linha][coluna] != "")
-					return false;
+					jogada_valida = false;
 		}
 
-	return true;
+	return jogada_valida;
+}
+
+void jogadas_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
+{
+
 }
 
 bool alocar_jogada(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], char jogador,int casa_jogada, bool vez_jogador)

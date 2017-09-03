@@ -33,12 +33,10 @@ bool andamento_jogo(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], char jogador, int
 	return jogador_vez = alocar_jogada(matriz_jogo, jogador, casa_jogada, jogador_vez);
 }
 
-void inicio_jogo_jogador()
+void inicio_jogo_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 {
 	int casa_jogada = 0,
 		jogadas_restantes = 9;
-
-	string matriz_jogo[TAMANHO_MATRIZ_JOGO][TAMANHO_MATRIZ_JOGO];
 
 	bool jogador_vez = false,
 		jogo_em_andamento = true;
@@ -46,6 +44,55 @@ void inicio_jogo_jogador()
 	while (jogo_em_andamento && jogadas_restantes > 0)
 	{
 		cin >> casa_jogada;
+
+		while (!(casa_jogada > 0 && casa_jogada < 10))
+		{
+			cout << "Jogada Invalida!" << endl;
+			cin >> casa_jogada;
+		}
+
+		if (verificar_jogada(matriz_jogo, casa_jogada))
+		{
+			if (jogador_vez)
+				jogador_vez = andamento_jogo(matriz_jogo, JOGADOR_X, casa_jogada, jogador_vez);
+			else
+				jogador_vez = andamento_jogo(matriz_jogo, JOGADOR_O, casa_jogada, jogador_vez);
+
+			if (verificar_ganhador(matriz_jogo))
+			{
+				jogo_em_andamento = false;
+				fim_de_jogo(jogador_vez, false);
+			}
+
+			jogadas_restantes--;
+		}
+		else
+			cout << endl << "Casa ocupada!" << endl << endl;
+
+		escrever_matriz(matriz_jogo);
+	}
+
+	if (jogadas_restantes == 0)
+		fim_de_jogo(jogador_vez, true);
+}
+
+void inicio_jogo_jogador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
+{
+	int casa_jogada = 0,
+		jogadas_restantes = 9;
+
+	bool jogador_vez = false,
+		jogo_em_andamento = true;
+
+	while (jogo_em_andamento && jogadas_restantes > 0)
+	{
+		cin >> casa_jogada;
+
+		while (!(casa_jogada > 0 && casa_jogada < 10))
+		{
+			cout << "Jogada Invalida!" << endl;
+			cin >> casa_jogada;
+		}
 
 		if (verificar_jogada(matriz_jogo, casa_jogada))
 		{
@@ -78,15 +125,31 @@ int main()
 
 	int escolha_menu = 0;
 
-	//cout << "Escolha seu modo de jogo:" << endl;
-	//cout << "1 - Para jogar contra um jogador" << endl;
-	//cout << "2 - Para jogar contra a maquina" << endl;
+	string matriz_jogo[TAMANHO_MATRIZ_JOGO][TAMANHO_MATRIZ_JOGO];
 
-	//cin >> escolha_menu;
+	cout << "Escolha seu modo de jogo:" << endl;
+	cout << "1 - Para jogar contra um jogador" << endl;
+	cout << "2 - Para jogar contra a maquina" << endl;
 
-	escrever_ordem_casas();
+	cin >> escolha_menu;
 
-	inicio_jogo_jogador();
+	switch (escolha_menu)
+	{
+	case 1:
+		inicio_jogo_jogador(matriz_jogo);
+		escrever_ordem_casas();
+
+		break;
+
+	case 2:
+		inicio_jogo_computador(matriz_jogo);
+		escrever_ordem_casas();
+
+		break;
+
+	default:
+		break;
+	}
 
 	cin.get();
 
