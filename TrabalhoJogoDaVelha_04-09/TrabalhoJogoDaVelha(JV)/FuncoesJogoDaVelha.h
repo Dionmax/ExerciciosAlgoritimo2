@@ -3,6 +3,8 @@
 
 #include "stdafx.h"
 #include "string"
+#include <time.h>
+
 
 using namespace std;
 
@@ -14,6 +16,7 @@ const int
 	ZERO = 0,
 	UM = 1,
 	DOIS = 2,
+	NOVE = 9,
 	DEZ = 10;
 
 bool verificar_diogonal_secundaria(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
@@ -99,11 +102,6 @@ bool verificar_jogada(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], int casa_jogada
 	return jogada_valida;
 }
 
-void jogadas_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
-{
-
-}
-
 bool alocar_jogada(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], char jogador,int casa_jogada, bool vez_jogador)
 {
 	int ponteiro_matriz;
@@ -120,6 +118,28 @@ bool alocar_jogada(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], char jogador,int c
 		return vez_jogador = false;
 	else
 		return vez_jogador = true;
+}
+
+bool jogadas_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], char jogador, int casa_jogada, bool jogador_vez, int jogadas_realizadas[])
+{
+	jogadas_realizadas[casa_jogada - 1] = casa_jogada;
+
+	bool jogada_valida = true;
+
+	while (jogada_valida)
+	{
+		casa_jogada = rand() % NOVE;
+
+		for (int cont = 0; cont < NOVE; cont++)
+		{
+			if (casa_jogada != jogadas_realizadas[cont] && casa_jogada != ZERO)
+				jogada_valida = false;
+		}
+	}
+
+	jogador_vez = alocar_jogada(matriz_jogo, jogador, casa_jogada, jogador_vez);
+
+	return jogador_vez;
 }
 
 void escrever_ordem_casas()
