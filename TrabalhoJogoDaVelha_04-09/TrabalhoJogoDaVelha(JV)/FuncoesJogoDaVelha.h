@@ -120,7 +120,7 @@ bool alocar_jogada(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], char jogador,int c
 		return vez_jogador = true;
 }
 
-bool jogadas_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], char jogador, int casa_jogada, bool jogador_vez, int jogadas_realizadas[])
+bool jogadas_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], char jogador, int casa_jogada, bool jogador_vez)
 {
 	jogadas_realizadas[casa_jogada - 1] = casa_jogada;
 
@@ -130,14 +130,12 @@ bool jogadas_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], char jogador,
 	{
 		casa_jogada = rand() % NOVE;
 
-		for (int cont = 0; cont < NOVE; cont++)
+		if (verificar_jogada)
 		{
-			if (casa_jogada != jogadas_realizadas[cont] && casa_jogada != ZERO)
-				jogada_valida = false;
+			jogador_vez = alocar_jogada(matriz_jogo, jogador, casa_jogada, jogador_vez);
+			jogada_valida = false;
 		}
 	}
-
-	jogador_vez = alocar_jogada(matriz_jogo, jogador, casa_jogada, jogador_vez);
 
 	return jogador_vez;
 }

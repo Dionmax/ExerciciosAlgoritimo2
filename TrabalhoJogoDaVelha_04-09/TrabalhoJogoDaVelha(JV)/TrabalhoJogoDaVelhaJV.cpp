@@ -34,11 +34,15 @@ bool andamento_jogo(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], char jogador, int
 	return jogador_vez = alocar_jogada(matriz_jogo, jogador, casa_jogada, jogador_vez);
 }
 
+bool movimento_computador()
+{
+
+}
+
 void inicio_jogo_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 {
 	int casa_jogada = ZERO,
-		jogadas_restantes = NOVE,
-		jogadas_realizadas[NOVE] = { 0,0,0,0,0,0,0,0,0 };
+		jogadas_restantes = NOVE;
 
 	bool jogador_vez = false,
 		jogo_em_andamento = true;
@@ -56,7 +60,7 @@ void inicio_jogo_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 		if (verificar_jogada(matriz_jogo, casa_jogada))
 		{
 			if (jogador_vez)
-				jogador_vez = jogadas_computador(matriz_jogo, JOGADOR_X, casa_jogada, jogador_vez,jogadas_realizadas);
+				jogador_vez = jogadas_computador(matriz_jogo, JOGADOR_X, casa_jogada, jogador_vez);
 			else
 				jogador_vez = andamento_jogo(matriz_jogo, JOGADOR_O, casa_jogada, jogador_vez);
 
