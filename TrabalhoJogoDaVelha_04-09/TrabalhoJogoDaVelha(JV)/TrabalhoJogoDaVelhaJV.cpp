@@ -36,7 +36,7 @@ bool andamento_jogo(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], char jogador, int
 
 bool movimento_computador()
 {
-
+	return false;
 }
 
 void inicio_jogo_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
@@ -49,13 +49,17 @@ void inicio_jogo_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 
 	while (jogo_em_andamento && jogadas_restantes > ZERO)
 	{
-		cin >> casa_jogada;
+		if (!jogador_vez)
+			cin >> casa_jogada;
 
 		while (!(casa_jogada > ZERO && casa_jogada < DEZ))
 		{
 			cout << "Jogada Invalida!" << endl;
 			cin >> casa_jogada;
 		}
+
+		if (jogador_vez)
+			casa_jogada = 10;
 
 		if (verificar_jogada(matriz_jogo, casa_jogada))
 		{

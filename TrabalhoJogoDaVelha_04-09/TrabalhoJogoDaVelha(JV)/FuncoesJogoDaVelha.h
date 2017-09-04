@@ -122,7 +122,7 @@ bool alocar_jogada(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], char jogador,int c
 
 bool jogadas_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], char jogador, int casa_jogada, bool jogador_vez)
 {
-	jogadas_realizadas[casa_jogada - 1] = casa_jogada;
+	srand(time(NULL));
 
 	bool jogada_valida = true;
 
@@ -130,7 +130,7 @@ bool jogadas_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], char jogador,
 	{
 		casa_jogada = rand() % NOVE;
 
-		if (verificar_jogada)
+		if (verificar_jogada(matriz_jogo, casa_jogada))
 		{
 			jogador_vez = alocar_jogada(matriz_jogo, jogador, casa_jogada, jogador_vez);
 			jogada_valida = false;
@@ -174,6 +174,8 @@ void escrever_matriz(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 
 		cout << endl;
 	}
+
+	cout << endl;
 }
 
 
