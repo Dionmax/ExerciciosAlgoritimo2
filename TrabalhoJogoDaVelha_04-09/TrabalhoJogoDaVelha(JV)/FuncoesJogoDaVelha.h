@@ -120,9 +120,11 @@ bool alocar_jogada(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], char jogador,int c
 		return vez_jogador = true;
 }
 
-bool jogadas_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], char jogador, int casa_jogada, bool jogador_vez)
+void jogadas_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 {
 	srand(time(NULL));
+
+	int casa_jogada;
 
 	bool jogada_valida = true;
 
@@ -130,14 +132,12 @@ bool jogadas_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], char jogador,
 	{
 		casa_jogada = rand() % NOVE;
 
-		if (verificar_jogada(matriz_jogo, casa_jogada))
+		if (verificar_jogada(matriz_jogo, casa_jogada) && casa_jogada != 0)
 		{
-			jogador_vez = alocar_jogada(matriz_jogo, jogador, casa_jogada, jogador_vez);
+			alocar_jogada(matriz_jogo, JOGADOR_X, casa_jogada, true);
 			jogada_valida = false;
 		}
 	}
-
-	return jogador_vez;
 }
 
 void escrever_ordem_casas()

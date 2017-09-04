@@ -27,63 +27,66 @@ void fim_de_jogo(bool jogador,bool deu_velha )
 		cout << "Fim de Jogo" << endl;
 
 	cin.get();
+	cin.get();
+
+	exit(0);
 }
 
-bool andamento_jogo(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], char jogador, int casa_jogada, bool jogador_vez)
+void movimento_jogador_x_maquina(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 {
-	return jogador_vez = alocar_jogada(matriz_jogo, jogador, casa_jogada, jogador_vez);
+	int casa_jogada = ZERO;
+
+	cin >> casa_jogada;
+
+	while (!(casa_jogada > ZERO && casa_jogada < DEZ))
+	{
+		cout << "Jogada Invalida!" << endl;
+		cin >> casa_jogada;
+	}
+
+	if (verificar_jogada(matriz_jogo, casa_jogada))
+		alocar_jogada(matriz_jogo, JOGADOR_O, casa_jogada, false);
+	else
+	{
+		cout << "Casa ocupada!" << endl;
+		movimento_jogador_x_maquina(matriz_jogo);
+	}
+
+	if (verificar_ganhador(matriz_jogo))
+	{
+		fim_de_jogo(true, false);
+	}
 }
 
-bool movimento_computador()
+void movimentos_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 {
-	return false;
+	jogadas_computador(matriz_jogo);
+
+	if (verificar_ganhador(matriz_jogo))
+	{
+		fim_de_jogo(false, false);
+	}
 }
 
 void inicio_jogo_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 {
-	int casa_jogada = ZERO,
-		jogadas_restantes = NOVE;
+	int jogadas_restantes = NOVE;
 
-	bool jogador_vez = false,
-		jogo_em_andamento = true;
+	bool jogo_em_andamento = true;
 
 	while (jogo_em_andamento && jogadas_restantes > ZERO)
 	{
-		if (!jogador_vez)
-			cin >> casa_jogada;
+		movimento_jogador_x_maquina(matriz_jogo);
 
-		while (!(casa_jogada > ZERO && casa_jogada < DEZ))
-		{
-			cout << "Jogada Invalida!" << endl;
-			cin >> casa_jogada;
-		}
-
-		if (jogador_vez)
-			casa_jogada = 10;
-
-		if (verificar_jogada(matriz_jogo, casa_jogada))
-		{
-			if (jogador_vez)
-				jogador_vez = jogadas_computador(matriz_jogo, JOGADOR_X, casa_jogada, jogador_vez);
-			else
-				jogador_vez = andamento_jogo(matriz_jogo, JOGADOR_O, casa_jogada, jogador_vez);
-
-			if (verificar_ganhador(matriz_jogo))
-			{
-				jogo_em_andamento = false;
-				fim_de_jogo(jogador_vez, false);
-			}
-
-			jogadas_restantes--;
-		}
-		else
-			cout << endl << "Casa ocupada!" << endl << endl;
+		movimentos_computador(matriz_jogo);
 
 		escrever_matriz(matriz_jogo);
+
+		jogadas_restantes--;
 	}
 
 	if (jogadas_restantes == ZERO)
-		fim_de_jogo(jogador_vez, true);
+		fim_de_jogo(true, true);
 }
 
 void inicio_jogo_jogador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
@@ -107,9 +110,9 @@ void inicio_jogo_jogador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 		if (verificar_jogada(matriz_jogo, casa_jogada))
 		{
 			if (jogador_vez)
-				jogador_vez = andamento_jogo(matriz_jogo, JOGADOR_X, casa_jogada, jogador_vez);
+				jogador_vez = alocar_jogada(matriz_jogo, JOGADOR_X, casa_jogada, jogador_vez);
 			else
-				jogador_vez = andamento_jogo(matriz_jogo, JOGADOR_O, casa_jogada, jogador_vez);
+				jogador_vez = alocar_jogada(matriz_jogo, JOGADOR_O, casa_jogada, jogador_vez);
 
 			if (verificar_ganhador(matriz_jogo))
 			{
@@ -129,19 +132,21 @@ void inicio_jogo_jogador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 		fim_de_jogo(jogador_vez, true);
 }
 
-int main()
+void comeco(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 {
-	setlocale(LC_ALL, "Portuguese");
-
 	int escolha_menu = ZERO;
-
-	string matriz_jogo[TAMANHO_MATRIZ_JOGO][TAMANHO_MATRIZ_JOGO];
 
 	cout << "Escolha seu modo de jogo:" << endl;
 	cout << "1 - Para jogar contra um jogador" << endl;
 	cout << "2 - Para jogar contra a maquina" << endl;
 
 	cin >> escolha_menu;
+
+	while (!(escolha_menu == UM || escolha_menu == DOIS))
+	{
+		cout << "Escolha invalida!" << endl;
+		cin >> escolha_menu;
+	}
 
 	switch (escolha_menu)
 	{
@@ -160,8 +165,15 @@ int main()
 	default:
 		break;
 	}
+}
 
-	cin.get();
+int main()
+{
+	setlocale(LC_ALL, "Portuguese");
+
+	string matriz_jogo[TAMANHO_MATRIZ_JOGO][TAMANHO_MATRIZ_JOGO];
+
+	comeco(matriz_jogo);
 
     return 0;
 }
