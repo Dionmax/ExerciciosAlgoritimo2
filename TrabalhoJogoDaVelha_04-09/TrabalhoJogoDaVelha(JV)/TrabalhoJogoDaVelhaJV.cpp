@@ -89,7 +89,7 @@ void inicio_jogo_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 		fim_de_jogo(true, true);
 }
 
-void inicio_jogo_jogador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
+void inicio_jogo_jogadores(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 {
 	int casa_jogada = 0,
 		jogadas_restantes = 9;
@@ -152,7 +152,7 @@ void comeco(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 	{
 	case 1:
 		escrever_ordem_casas();
-		inicio_jogo_jogador(matriz_jogo);
+		inicio_jogo_jogadores(matriz_jogo);
 
 		break;
 
