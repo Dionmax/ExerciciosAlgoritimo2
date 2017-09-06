@@ -5,7 +5,6 @@
 #include "string"
 #include <time.h>
 
-
 using namespace std;
 
 #define TAMANHO_MATRIZ_JOGO 3
