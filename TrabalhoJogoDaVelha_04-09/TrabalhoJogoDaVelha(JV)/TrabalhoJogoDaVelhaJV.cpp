@@ -12,19 +12,21 @@
 
 using namespace std;
 
-void fim_de_jogo(bool jogador,bool deu_velha )
+void fim_de_jogo(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], bool jogador,bool deu_velha )
 {
 	if (!deu_velha)
 	{
 		if (jogador)
-			cout << "Jogador O venceu!" << endl;
+			cout << "Jogador O venceu!" << endl << endl;
 		else
 			cout << "Jogador X venceu!" << endl;
 
-		cout << "Fim de Jogo" << endl;
+		cout << "Fim de Jogo" << endl << endl;
 	}
 	else
 		cout << "Fim de Jogo" << endl;
+
+	escrever_matriz(matriz_jogo);
 
 	cin.get();
 	cin.get();
@@ -54,7 +56,7 @@ void movimento_jogador_x_maquina(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 
 	if (verificar_ganhador(matriz_jogo))
 	{
-		fim_de_jogo(true, false);
+		fim_de_jogo(matriz_jogo, true, false);
 	}
 }
 
@@ -64,7 +66,7 @@ void movimentos_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 
 	if (verificar_ganhador(matriz_jogo))
 	{
-		fim_de_jogo(false, false);
+		fim_de_jogo(matriz_jogo, false, false);
 	}
 }
 
@@ -86,7 +88,7 @@ void inicio_jogo_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 	}
 
 	if (jogadas_restantes == ZERO)
-		fim_de_jogo(true, true);
+		fim_de_jogo(matriz_jogo, true, true);
 }
 
 void inicio_jogo_jogadores(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
@@ -117,7 +119,7 @@ void inicio_jogo_jogadores(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 			if (verificar_ganhador(matriz_jogo))
 			{
 				jogo_em_andamento = false;
-				fim_de_jogo(jogador_vez,false);
+				fim_de_jogo(matriz_jogo,jogador_vez,false);
 			}
 
 			jogadas_restantes--;
@@ -129,7 +131,7 @@ void inicio_jogo_jogadores(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 	}
 
 	if (jogadas_restantes == ZERO)
-		fim_de_jogo(jogador_vez, true);
+		fim_de_jogo(matriz_jogo, jogador_vez, true);
 }
 
 void comeco(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
