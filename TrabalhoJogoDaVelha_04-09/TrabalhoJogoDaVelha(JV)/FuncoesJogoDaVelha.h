@@ -119,6 +119,12 @@ bool alocar_jogada(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], char jogador,int c
 		return vez_jogador = true;
 }
 
+int minimax(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
+{
+
+	return 0;
+}
+
 void jogadas_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 {
 	srand(time(NULL));
@@ -131,7 +137,7 @@ void jogadas_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 	{
 		casa_jogada = rand() % NOVE;
 
-		if (verificar_jogada(matriz_jogo, casa_jogada) && casa_jogada != 0)
+		if (verificar_jogada(matriz_jogo, casa_jogada) && casa_jogada != ZERO)
 		{
 			alocar_jogada(matriz_jogo, JOGADOR_X, casa_jogada, true);
 			jogada_valida = false;
