@@ -7,8 +7,10 @@
 #include <time.h>
 #include <locale.h>
 #include <stdio.h>
+#include <math.h>
 
 #include "FuncoesJogoDaVelha.h"
+#include "MiniMaxJDV.h"
 
 using namespace std;
 
@@ -65,6 +67,28 @@ void movimento_jogador_x_maquina(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 		fim_de_jogo(matriz_jogo, true, false);
 }
 
+void movimentos_computador_minimax(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
+{
+	int ponteiro_para_matriz = 0,
+		linha,
+		coluna;
+
+	Movimento melhormovimento = melhor_movimento(matriz_jogo);
+
+	linha = melhormovimento.linha;
+	coluna = melhormovimento.coluna;
+
+	ponteiro_para_matriz = linha * TAMANHO_MATRIZ_JOGO + coluna;
+
+	if (verificar_jogada(matriz_jogo, ponteiro_para_matriz+1))
+		alocar_jogada(matriz_jogo, JOGADOR_X, ponteiro_para_matriz+1, false);
+	else
+		movimentos_computador_minimax(matriz_jogo);
+
+	if (verificar_ganhador(matriz_jogo))
+		fim_de_jogo(matriz_jogo, false, false);
+}
+
 void movimentos_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 {
 	jogadas_computador(matriz_jogo);
@@ -87,6 +111,27 @@ void possivel_vencedor(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], bool jogador_v
 {
 	if (verificar_ganhador(matriz_jogo))
 		fim_de_jogo(matriz_jogo, jogador_vez, false);
+}
+
+void inicio_jogo_minimax(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
+{
+	int jogadas_restantes = NOVE;
+
+	bool jogo_em_andamento = true;
+
+	while (jogadas_restantes > ZERO)
+	{
+		movimento_jogador_x_maquina(matriz_jogo);
+
+		movimentos_computador_minimax(matriz_jogo);
+
+		escrever_matriz(matriz_jogo);
+
+		jogadas_restantes--;
+	}
+
+	if (jogadas_restantes == ZERO)
+		fim_de_jogo(matriz_jogo, true, true);
 }
 
 void inicio_jogo_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
@@ -180,7 +225,9 @@ int main()
 
 	string matriz_jogo[TAMANHO_MATRIZ_JOGO][TAMANHO_MATRIZ_JOGO];
 
-	comeco(matriz_jogo);
+	//comeco(matriz_jogo);
+
+	inicio_jogo_minimax(matriz_jogo);
 
     return 0;
 }

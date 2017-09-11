@@ -1,10 +1,6 @@
 #ifndef FUNCOESJOGODAVELHA_H
 #define FUNCOESJOGODAVELHA_H
 
-#include "stdafx.h"
-#include "string"
-#include <time.h>
-
 using namespace std;
 
 #define TAMANHO_MATRIZ_JOGO 3
@@ -119,12 +115,6 @@ bool alocar_jogada(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], char jogador,int c
 		return vez_jogador = true;
 }
 
-int minimax(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
-{
-
-	return 0;
-}
-
 void jogadas_computador(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 {
 	srand(time(NULL));
@@ -182,7 +172,6 @@ void escrever_matriz(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 
 	cout << endl;
 }
-
 
 #endif // !FUNCOESJOGODAVELHA_H
 
