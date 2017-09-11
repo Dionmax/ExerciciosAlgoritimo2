@@ -11,7 +11,7 @@ bool restam_jogadas(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 {
 	for (int linha = 0; linha < TAMANHO_MATRIZ_JOGO; linha++)
 		for (int coluna = 0; coluna < TAMANHO_MATRIZ_JOGO; coluna++)
-			if (matriz_jogo[linha][coluna] == "")
+			if (matriz_jogo[linha][coluna] == "X")
 				return true;
 	return false;
 }
@@ -22,31 +22,31 @@ int calculo_pontuacao(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 		if (matriz_jogo[contador][ZERO] == matriz_jogo[contador][UM] && matriz_jogo[contador][ZERO] != "")
 			if (matriz_jogo[contador][ZERO] == matriz_jogo[contador][DOIS])
 				if (matriz_jogo[contador][ZERO] == "X")
-					return 10;
+					return 1;
 				else
-					return -10;
+					return -1;
 
 	for (int contador = 0; contador < TAMANHO_MATRIZ_JOGO; contador++)
 		if (matriz_jogo[ZERO][contador] == matriz_jogo[UM][contador] && matriz_jogo[ZERO][contador] != "")
 			if (matriz_jogo[ZERO][contador] == matriz_jogo[DOIS][contador])
 				if (matriz_jogo[ZERO][contador] == "X")
-					return 10;
+					return 1;
 				else
-					return -10;
+					return -1;
 
 	if (matriz_jogo[ZERO][ZERO] == matriz_jogo[UM][UM] && matriz_jogo[ZERO][ZERO] != "")
 		if (matriz_jogo[ZERO][ZERO] == matriz_jogo[DOIS][DOIS])
 			if(matriz_jogo[ZERO][ZERO] == "X")
-				return 10;
+				return 1;
 			else
-				return -10;
+				return -1;
 
 	if (matriz_jogo[ZERO][DOIS] == matriz_jogo[UM][UM] && matriz_jogo[ZERO][DOIS] != "")
 		if (matriz_jogo[ZERO][DOIS] == matriz_jogo[DOIS][ZERO])
 			if(matriz_jogo[ZERO][DOIS] == "X")
-				return 10;
+				return 1;
 			else
-				return -10;
+				return -1;
 
 	return 0;
 }
@@ -55,7 +55,10 @@ int minimax(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], int profundidade, bool jo
 {
 	int pontuacao = calculo_pontuacao(matriz_jogo);
 
-	if (pontuacao == 10 || pontuacao == -10)
+	if (pontuacao == 1)
+		return pontuacao;
+
+	if (pontuacao == -1)
 		return pontuacao;
 
 	if (!restam_jogadas)
@@ -69,7 +72,7 @@ int minimax(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], int profundidade, bool jo
 			for (int coluna = 0; coluna < TAMANHO_MATRIZ_JOGO; coluna++)
 				if (matriz_jogo[linha][coluna] == "")
 				{
-					matriz_jogo[linha][coluna] = JOGADOR_O;
+					matriz_jogo[linha][coluna] = JOGADOR_X;
 
 					melhor_pontuacao = fmax(melhor_pontuacao, minimax(matriz_jogo, profundidade + 1, !jogada_max));
 
@@ -86,7 +89,7 @@ int minimax(string matriz_jogo[][TAMANHO_MATRIZ_JOGO], int profundidade, bool jo
 			for (int coluna = 0; coluna < TAMANHO_MATRIZ_JOGO; coluna++)
 				if (matriz_jogo[linha][coluna] == "")
 				{
-					matriz_jogo[linha][coluna] = JOGADOR_X;
+					matriz_jogo[linha][coluna] = JOGADOR_O;
 
 					melhor_pontuacao = fmin(melhor_pontuacao, minimax(matriz_jogo, profundidade + 1, !jogada_max));
 
@@ -102,7 +105,6 @@ Movimento melhor_movimento(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 	int melhor_valor = -1000;
 
 	Movimento melhormovimento;
-
 	melhormovimento.linha = -1;
 	melhormovimento.coluna = -1;
 

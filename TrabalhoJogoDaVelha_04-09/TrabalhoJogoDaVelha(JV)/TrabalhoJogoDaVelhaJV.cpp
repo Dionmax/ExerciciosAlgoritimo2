@@ -78,6 +78,9 @@ void movimentos_computador_minimax(string matriz_jogo[][TAMANHO_MATRIZ_JOGO])
 	linha = melhormovimento.linha;
 	coluna = melhormovimento.coluna;
 
+	cout << linha << endl;
+	cout << coluna << endl;
+
 	ponteiro_para_matriz = linha * TAMANHO_MATRIZ_JOGO + coluna;
 
 	if (verificar_jogada(matriz_jogo, ponteiro_para_matriz+1))
