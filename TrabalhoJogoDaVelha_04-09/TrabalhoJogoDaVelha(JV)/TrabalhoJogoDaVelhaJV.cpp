@@ -228,9 +228,9 @@ int main()
 
 	string matriz_jogo[TAMANHO_MATRIZ_JOGO][TAMANHO_MATRIZ_JOGO];
 
-	//comeco(matriz_jogo);
+	comeco(matriz_jogo);
 
-	inicio_jogo_minimax(matriz_jogo);
+	//inicio_jogo_minimax(matriz_jogo);
 
     return 0;
 }
