@@ -11,6 +11,7 @@
 
 #include "FuncoesJogoDaVelha.h"
 #include "MiniMaxJDV.h"
+#include "SuporteEscritaBiblioteca.h"
 
 using namespace std;
 
