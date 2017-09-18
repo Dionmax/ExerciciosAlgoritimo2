@@ -6,24 +6,6 @@
 
 using namespace std;
 
-void escreva(int matriz[2][2], int tamanho);
-void escreva(int matriz[3][3], int tamanho);
-void escreva(int matriz[4][4], int tamanho);
-void escreva(int matriz[5][5], int tamanho);
-
-void escreva(int vetor[], int tamanho);
-
-void escreva(int numero);
-void escreva(float numero);
-void escreva(bool logico);
-void escreva(string texto);
-/*
-void leia(string valor);
-void leia(bool valor);
-void leia(float valor);
-void leia(int valor);
-void leia(char valor);*/
-
 void escreva(int matriz[2][2], int tamanho)
 {
 	for (int linha = 0; linha < tamanho; linha++)
@@ -72,20 +54,49 @@ void escreva(int vetor[], int tamanho)
 	}
 }
 
-void escreva(int numero)
+void escreva(int &numero)
 {
 	cout << numero;
 }
-void escreva(float numero)
-{
 
-}
-void escreva(bool logico)
+void escreva(float &numero)
 {
-
+	cout << numero;
 }
-void escreva(string texto)
+
+void escreva(bool &logico)
 {
-
+	cout << logico;
 }
+
+void escreva(string &texto)
+{
+	cout << texto;
+}
+
+void leia(string &valor)
+{
+	cin >> valor;
+}
+
+void leia(bool &valor)
+{
+	cin >> valor;
+}
+
+void leia(float &valor)
+{
+	cin >> valor;
+}
+
+void leia(int &valor)
+{
+	cin >> valor;
+}
+
+void leia(char &valor)
+{
+	cin >> valor;
+}
+
 #endif // !ESCREVAELER_H
