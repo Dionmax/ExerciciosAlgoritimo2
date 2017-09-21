@@ -2,35 +2,28 @@
 //
 
 #include "stdafx.h"
+#include <stdlib.h>
+#include <iostream>
 
-#define TAMANHO 3
+#include "SuporteaoDesafio.h"
 
-bool verificar_igualdade(int matriz[][TAMANHO])
-{
-	int horizontal = 0,
-		vertical = 0,
-		d_primaria = 0,
-		d_secundaria = 0;
-
-	for (int linha = 0; linha < TAMANHO; linha++)
-	{
-		for (int coluna = 0; coluna < TAMANHO; coluna++)
-		{
-			if (linha == 0)
-				horizontal += matriz[linha][coluna];
-
-			int aux = 0;
-
-			aux += matriz[linha][coluna];
-		}
-	}
-}
+using namespace std;
 
 int main()
 {
-	int matriz[TAMANHO][TAMANHO] = { 1,2,3,
-									 4,5,6,
-									 7,8,9 };
+	int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ];
+
+	bool teste = false;
+
+	for (int linha = 0; linha < TAMANHO_MATRIZ; linha++)
+		for (int coluna = 0; coluna < TAMANHO_MATRIZ; coluna++)
+			matriz[linha][coluna] = 1;
+
+	teste = verificar_igualdade(matriz);
+
+	cout << teste;
+
+	cin.get();
 
     return 0;
 }
