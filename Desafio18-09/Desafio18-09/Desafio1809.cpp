@@ -19,6 +19,8 @@ void escrever_matriz(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ])
 		}
 		cout << endl;
 	}
+
+	cout << endl;
 }
 
 void rotacionador(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ])
@@ -38,20 +40,15 @@ void rotacionador(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ])
 		}
 	}
 
-	cout << "NADA" << endl;
+	cout << "NADA" << endl << endl;
 }
 
 void bagunçador(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ])
 {
 	for (int linha = 0; linha < TAMANHO_MATRIZ; linha++)
 	{
-		for (int coluna = 0; coluna < TAMANHO_MATRIZ-1; coluna++)
+		for (int coluna = 0; coluna < TAMANHO_MATRIZ; coluna++)
 		{
-			int aux = matriz[linha][coluna];
-
-			matriz[linha][coluna] = matriz[linha][coluna+1];
-
-			matriz[linha][coluna + 1] = aux;
 
 			rotacionador(matriz);
 		}
