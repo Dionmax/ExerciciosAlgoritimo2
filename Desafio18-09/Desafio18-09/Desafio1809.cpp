@@ -6,22 +6,9 @@
 #include <iostream>
 
 #include "SuporteaoDesafio.h"
+#include "SuporteaoDesafioEscrito.h"
 
 using namespace std;
-
-void escrever_matriz(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ])
-{
-	for (int linha = 0; linha < TAMANHO_MATRIZ; linha++)
-	{
-		for (int coluna = 0; coluna < TAMANHO_MATRIZ; coluna++)
-		{
-			cout << matriz[linha][coluna];
-		}
-		cout << endl;
-	}
-
-	cout << endl;
-}
 
 void rotacionador(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ])
 {
@@ -35,23 +22,31 @@ void rotacionador(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ])
 
 			matriz[coluna][linha] = aux;
 
+			escrever_matriz(matriz);
+
 			if (verificar_igualdade(matriz))
 				escrever_matriz(matriz);
 		}
 	}
 
-	cout << "NADA" << endl << endl;
+	escreva_nada();
 }
 
 void bagunçador(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ])
 {
+	int contador_ponteiro = 0;
+
 	for (int linha = 0; linha < TAMANHO_MATRIZ; linha++)
 	{
 		for (int coluna = 0; coluna < TAMANHO_MATRIZ; coluna++)
 		{
+			int aux = matriz[linha][coluna];
+
+
 
 			rotacionador(matriz);
 		}
+		contador_ponteiro++;
 	}
 }
 
