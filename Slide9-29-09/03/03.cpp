@@ -62,7 +62,7 @@ int main()
 {
 	int numero;
 
-	numero = transformar_binario(6);
+	numero = transformar_binario(22);
 
 	escreva(numero);
 
