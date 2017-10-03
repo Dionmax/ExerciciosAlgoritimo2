@@ -13,12 +13,15 @@ void escreva(T algo)
 	cout << algo << endl;
 }
 
-int somador_recursivo(int array[], int tamanho, int total)
+int somador_recursivo(int array[], int posicao, int soma)
 {
-	if (tamanho == -1)
-		return total;
+	if (posicao == 0)
+		return soma;
 	else
-		return somador_recursivo(array, tamanho--, total += array[tamanho]);
+	{
+		soma += array[posicao - 1];
+		return somador_recursivo(array, posicao-1, soma);
+	}
 }
 
 int main()

@@ -45,7 +45,7 @@ string binarizador(string numero_binario, int numero)
 		return binarizador(numero_binario + "1", numero / 2);
 }
 
-int transformar_binario(int numero)
+string transformar_binario(int numero)
 {
 	string numero_binario = "";
 
@@ -55,12 +55,12 @@ int transformar_binario(int numero)
 
 	inverter_ordem(numero_binario, tamanho);
 
-	return stoi(numero_binario);
+	return numero_binario;
 }
 
 int main()
 {
-	int numero;
+	string numero;
 
 	numero = transformar_binario(22);
 
