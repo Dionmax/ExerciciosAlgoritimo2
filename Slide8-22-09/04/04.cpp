@@ -12,13 +12,13 @@ using namespace std;
 
 int main()
 {
-	int array[5] = {1,3,2,5,4};
+	int array[5] = {1,9,6,4,3};
 
 	//bubblesort<int>(array,5,ORDENACAO_CRESCENTE);
 
 	//inverter_ordem<int>(array, 5);
 
-	int a;
+	int a = 0;
 
 	a = encontrar_maior_valor<int>(array, 5);
 

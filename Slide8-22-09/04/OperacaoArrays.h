@@ -51,13 +51,13 @@ void encontrar_valores(T array[],int tamanho, int valores_encontrados[2])
 
 	for (int contador = 0; contador < tamanho; contador++)
 	{
-		if (contador == 0 || array[contador] > valor_maior)
+		if (contador == 0 || array[contador] < valor_maior)
 		{
 			valor_maior = array[contador];
 			indice_maior = contador;
 		}
 
-		if (contador == 0 || array[contador] < valor_menor)
+		if (contador == 0 || array[contador] > valor_menor)
 		{
 			valor_menor = array[contador];
 			indice_menor = contador;
@@ -74,6 +74,7 @@ T encontrar_indices(T array[], int tamanho, int indice)
 	int resultado[2] = { 0 };
 
 	encontrar_valores(array, tamanho, resultado);
+
 	return resultado[indice];
 }
 
@@ -81,6 +82,7 @@ template <typename T>
 T encontrar_maior_valor(T array[], int tamanho)
 {
 	int indicemaior = encontrar_indices(array, tamanho, MAIOR_INDICE);
+
 	return array[indicemaior];
 }
 
