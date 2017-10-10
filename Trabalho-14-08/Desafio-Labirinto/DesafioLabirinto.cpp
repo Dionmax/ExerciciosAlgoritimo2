@@ -36,7 +36,7 @@ void representacao_matriz()
 	prencher_matriz(matriz, 3, 2);
 	prencher_matriz(matriz, 3, 5);
 	prencher_matriz(matriz, 4, 6);
-	prencher_matriz(matriz, 5, 2);	
+	prencher_matriz(matriz, 5, 2);
 	prencher_matriz(matriz, 6, 5);
 
 	for (int linha = 0; linha < TAMANHO; linha++)
