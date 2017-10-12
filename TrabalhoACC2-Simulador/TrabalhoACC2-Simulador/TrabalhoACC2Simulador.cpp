@@ -12,7 +12,7 @@ using namespace std;
 
 int main()
 {
-	busca_recursiva(campoPequeno, QUANTIDADE_LINHAS_PARA_MENORES, 5, 10);
+	busca_recursiva(campoGrande, QUANTIDADE_LINHAS_PARA_GRANDES, 5, 8);
 
 	/*
 	for (int linha = 5; linha < QUANTIDADE_LINHAS_PARA_MENORES; linha++)

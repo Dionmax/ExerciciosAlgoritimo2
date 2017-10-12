@@ -127,8 +127,9 @@ void escreverCampo(char campo[][QUANTIDADE_COLUNAS], int tamanhoCampo)
 	{
 		for (int coluna = 0; coluna < QUANTIDADE_COLUNAS; coluna++)
 			cout << campo[linha][coluna] << "";
-		cout << endl;
+		cout <<endl;
 	}
+	cout << endl;
 }
 
 /*

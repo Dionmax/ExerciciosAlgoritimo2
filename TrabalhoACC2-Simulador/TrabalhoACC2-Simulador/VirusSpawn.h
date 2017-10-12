@@ -17,16 +17,18 @@ bool verificar_casa(char campo[][QUANTIDADE_COLUNAS], int tamnho_matriz, int lin
 
 int busca_recursiva(char campo[][QUANTIDADE_COLUNAS], int tamanho_matriz, int linha, int coluna)
 {
+	escreverUmDosCampos(TAMANHO_GRANDE);
+
 	if (verificar_casa(campo, tamanho_matriz, linha, coluna))
 		campo[linha][coluna] = VIRUS;
 	else
 		return NADA;
 
-	escreverUmDosCampos(TAMANHO_PEQUENO);
-
 	for (int linha_dois = -1; linha_dois < 2; linha_dois++)
 		for (int coluna_dois = -1; coluna_dois < 2; coluna_dois++)
-			return busca_recursiva(campo, tamanho_matriz, linha + linha_dois, coluna + coluna_dois);
+			 busca_recursiva(campo, tamanho_matriz, linha + linha_dois, coluna + coluna_dois);
 }
+
+
 #endif // !VIRUSSPAWN_H
 
