@@ -7,29 +7,26 @@
 
 #include "Flood.h"
 #include "VirusSpawn.h"
+#include "suporte_escrita.h"
 
 using namespace std;
 
+void escolhas_menu()
+{
+
+}
+
 int main()
 {
-	busca_recursiva(campoGrande, QUANTIDADE_LINHAS_PARA_GRANDES, 5, 8);
+	setlocale(LC_ALL, "Portuguese");
 
-	/*
-	for (int linha = 5; linha < QUANTIDADE_LINHAS_PARA_MENORES; linha++)
-		for (int coluna = 8; coluna < QUANTIDADE_COLUNAS; coluna++)
-			busca_recursiva(campoPequeno, QUANTIDADE_LINHAS_PARA_MENORES, linha, coluna);
-	*/
+	menu_de_propagacao_virus();
 
+	//busca_recursiva(campoPequeno, QUANTIDADE_LINHAS_PARA_MENORES, 5, 8, TAMANHO_PEQUENO);
+	//busca_recursiva(campoMedio, QUANTIDADE_LINHAS_PARA_MEDIOS, 5, 5, TAMANHO_MEDIO);
+	//busca_recursiva(campoGrande, QUANTIDADE_LINHAS_PARA_GRANDES, 5, 8, TAMANHO_GRANDE);
 
-	/*escreverUmDosCampos(TAMANHO_PEQUENO);
 	cout << endl;
-
-	escreverUmDosCampos(TAMANHO_MEDIO);
-	cout << endl;
-
-	escreverUmDosCampos(TAMANHO_GRANDE);
-	cout << endl;*/
-
 	system("pause");
 	return 0;
 }
