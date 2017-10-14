@@ -34,12 +34,13 @@ int busca_recursiva(char campo[][QUANTIDADE_COLUNAS], int tamanho_matriz, int li
 	return NADA;
 }
 
-void gerar_virus(int tamanho, int escrever)
+void gerar_virus(int tamanho, int localizacao, bool escrever)
 {
 	srand(time(NULL));
 
-	int linha = rand()%4,
-		coluna = rand()%4;
+	int linha = rand()%2,
+		coluna = rand()%2;
+
 
 
 

@@ -1,9 +1,6 @@
 #ifndef SUPORTE_ESCRITA_H
 #define SUPORTE_ESCRITA_H
 
-const int LOCALIZACAO_LINHA_ARRAY = 0;
-const int LOCALIZACAO_COLUNA_ARRAY = 1;
-
 int menu_de_propagacao_virus()
 {
 	int opcao = 0;
@@ -22,60 +19,107 @@ int menu_de_propagacao_virus()
 	return opcao;
 }
 
-int menu_da_localizacao_da_propagacao()
+bool testar_localizacao(int tamanho, int &linha, int &coluna)
 {
-	int opcao = 0;
+	bool validacao = false;
 
-	cout << 
-		"Desejas que o virus começar a partir da onde:" << endl << endl << 
-		"Canto superior esquerdo" << endl <<
-		"Canto superior direito" << endl <<
-		"Canto inferior esquerdo" << endl <<
-		"Canto inferior direito" << endl;
+	switch (tamanho)
+	{
+	case 0:
+		if (linha < QUANTIDADE_LINHAS_PARA_MENORES && linha > 0)
+			validacao = true;
+		break;
+	case 1:
+		if (linha < QUANTIDADE_LINHAS_PARA_MEDIOS && linha > 0)
+			validacao = true;
+		break;
+	case 2:
+		if (linha < QUANTIDADE_LINHAS_PARA_GRANDES && linha > 0)
+			validacao = true;
+		break;
+	default:
+		break;
+	}
 
-	cin >> opcao;
+	if (!(coluna < QUANTIDADE_COLUNAS && coluna > 0))
+		validacao = false;
 
-	return opcao;
+	return validacao;
 }
 
-int menu_da_localizacao_manual_pequena()
+void menu_da_localizacao_manual(int tamanho, int &linha, int &coluna)
 {
-	int localizacoes[2];
+	string escrita_linha[3];
 
-	cout << "Linha que o virus deve nascer (Min:0,Max:10):";
-	cin >> localizacoes[LOCALIZACAO_LINHA_ARRAY];
+	escrita_linha[0] = "Linha que o virus deve nascer (Min:0,Max:9):";
+	escrita_linha[1] = "Linha que o virus deve nascer (Min:0,Max:14):";
+	escrita_linha[2] = "Linha que o virus deve nascer (Min:0,Max:24):";
 
-	cout << endl;
+	do
+	{
+		switch (tamanho)
+		{
+		case 0:
+			cout << escrita_linha[0] << endl;
+			cin >> linha;
+			break;
+		case 1:
+			cout << escrita_linha[1] << endl;
+			cin >> linha;
+			break;
+		case 2:
+			cout << escrita_linha[2] << endl;
+			cin >> linha;
+			break;
 
-	cout << "coluna que o virus deve nascer (Min:0,Max:19):";
-	cin >> localizacoes[LOCALIZACAO_COLUNA_ARRAY];
+		default:
+			break;
+		}
+
+		cout << "coluna que o virus deve nascer (Min:0,Max:19):" << endl;
+		cin >> coluna;
+
+		if (!testar_localizacao(tamanho, linha, coluna))
+			cout << endl << "Tamanhos invalidos!" << endl << endl;
+
+	} while (!testar_localizacao(tamanho, linha, coluna));
 }
 
-int menu_da_localizacao_manual_media()
+void menu_central()
 {
-	int localizacoes[2];
+	int linha = 0, coluna = 0;
 
-	cout << "Linha que o virus deve nascer (Min:0,Max:15):";
-	cin >> localizacoes[LOCALIZACAO_LINHA_ARRAY];
+	cout << "|Interface de usuário|" << endl;
 
-	cout << endl;
-
-	cout << "coluna que o virus deve nascer (Min:0,Max:19):";
-	cin >> localizacoes[LOCALIZACAO_COLUNA_ARRAY];
+	switch (menu_de_propagacao_virus())
+	{
+	case 1:
+		menu_da_localizacao_manual(0, linha, coluna);
+		busca_recursiva(campoPequeno, QUANTIDADE_LINHAS_PARA_MENORES, linha, coluna, TAMANHO_PEQUENO);
+		break;
+	case 2:
+		menu_da_localizacao_manual(1, linha, coluna);
+		busca_recursiva(campoMedio, QUANTIDADE_LINHAS_PARA_MEDIOS, linha, coluna, TAMANHO_MEDIO);
+		break;
+	case 3:
+		menu_da_localizacao_manual(2, linha, coluna);
+		busca_recursiva(campoGrande, QUANTIDADE_LINHAS_PARA_GRANDES, linha, coluna, TAMANHO_GRANDE);
+		break;
+	case 4:
+		menu_da_localizacao_manual(0, linha, coluna);
+		busca_recursiva(campoPequeno, QUANTIDADE_LINHAS_PARA_MENORES, linha, coluna, 0);
+		break;
+	case 5:
+		menu_da_localizacao_manual(1, linha, coluna);
+		busca_recursiva(campoMedio, QUANTIDADE_LINHAS_PARA_MEDIOS, linha, coluna, 0);
+		break;
+	case 6:
+		menu_da_localizacao_manual(2, linha, coluna);
+		busca_recursiva(campoGrande, QUANTIDADE_LINHAS_PARA_GRANDES, linha, coluna, 0);
+		break;
+	default:
+		break;
+	}
 }
-
-int menu_da_localizacao_manual_grande()
-{
-	int localizacoes[2];
-
-	cout << "Linha que o virus deve nascer (Min:0,Max:24):";
-	cin >> localizacoes[LOCALIZACAO_LINHA_ARRAY];
-
-	cout << endl;
-
-	cout << "coluna que o virus deve nascer (Min:0,Max:19):";
-	cin >> localizacoes[LOCALIZACAO_COLUNA_ARRAY];
-}
-
 #endif // !SUPORTE_ESCRITA_H
 
