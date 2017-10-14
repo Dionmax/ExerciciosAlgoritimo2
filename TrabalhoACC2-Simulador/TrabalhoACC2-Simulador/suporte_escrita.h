@@ -12,7 +12,7 @@ int menu_de_propagacao_virus()
 		"3 - Gerar virus na matriz Grande (Com consulta)" << endl <<
 		"4 - Gerar virus na matriz Pequena (Sem consulta)." << endl <<
 		"5 - Gerar virus na matriz Média (Sem consulta)." << endl <<
-		"6 - Gerar virus na matriz Grande (Sem consulta)." << endl;
+		"6 - Gerar virus na matriz Grande (Sem consulta)." << endl << endl;
 
 	cin >> opcao;
 
@@ -89,7 +89,7 @@ void menu_central()
 {
 	int linha = 0, coluna = 0;
 
-	cout << "|Interface de usuário|" << endl;
+	cout << "|Interface de usuário|" << endl << endl;
 
 	switch (menu_de_propagacao_virus())
 	{
@@ -108,14 +108,17 @@ void menu_central()
 	case 4:
 		menu_da_localizacao_manual(0, linha, coluna);
 		busca_recursiva(campoPequeno, QUANTIDADE_LINHAS_PARA_MENORES, linha, coluna, 0);
+		escreverUmDosCampos(TAMANHO_PEQUENO);
 		break;
 	case 5:
 		menu_da_localizacao_manual(1, linha, coluna);
 		busca_recursiva(campoMedio, QUANTIDADE_LINHAS_PARA_MEDIOS, linha, coluna, 0);
+		escreverUmDosCampos(TAMANHO_MEDIO);
 		break;
 	case 6:
 		menu_da_localizacao_manual(2, linha, coluna);
 		busca_recursiva(campoGrande, QUANTIDADE_LINHAS_PARA_GRANDES, linha, coluna, 0);
+		escreverUmDosCampos(TAMANHO_GRANDE);
 		break;
 	default:
 		break;
