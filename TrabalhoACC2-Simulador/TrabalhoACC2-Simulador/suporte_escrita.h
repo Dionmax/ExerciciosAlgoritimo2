@@ -51,9 +51,9 @@ void menu_da_localizacao_manual(int tamanho, int &linha, int &coluna)
 {
 	string escrita_linha[3];
 
-	escrita_linha[0] = "Linha que o virus deve nascer (Min:0,Max:9):";
-	escrita_linha[1] = "Linha que o virus deve nascer (Min:0,Max:14):";
-	escrita_linha[2] = "Linha que o virus deve nascer (Min:0,Max:24):";
+	escrita_linha[0] = "Linha que o virus deve nascer (Min:1,Max:9):";
+	escrita_linha[1] = "Linha que o virus deve nascer (Min:1,Max:14):";
+	escrita_linha[2] = "Linha que o virus deve nascer (Min:1,Max:24):";
 
 	do
 	{
@@ -76,7 +76,7 @@ void menu_da_localizacao_manual(int tamanho, int &linha, int &coluna)
 			break;
 		}
 
-		cout << "coluna que o virus deve nascer (Min:0,Max:19):" << endl;
+		cout << "coluna que o virus deve nascer (Min:1,Max:19):" << endl;
 		cin >> coluna;
 
 		if (!testar_localizacao(tamanho, linha, coluna))

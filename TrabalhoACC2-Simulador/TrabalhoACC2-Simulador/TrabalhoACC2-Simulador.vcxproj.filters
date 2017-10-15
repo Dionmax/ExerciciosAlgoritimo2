@@ -33,6 +33,9 @@
     <ClInclude Include="suporte_escrita.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CercaSpawn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

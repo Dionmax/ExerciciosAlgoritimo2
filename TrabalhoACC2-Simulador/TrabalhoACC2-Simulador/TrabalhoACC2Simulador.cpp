@@ -20,7 +20,7 @@ int main()
 {
 	setlocale(LC_ALL, "Portuguese");
 
-	menu_central();
+	//menu_central();
 
 	cout << endl;
 
