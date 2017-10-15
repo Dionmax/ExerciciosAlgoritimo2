@@ -8,6 +8,7 @@
 #include "Flood.h"
 #include "VirusSpawn.h"
 #include "suporte_escrita.h"
+#include "CercaSpawn.h"
 
 using namespace std;
 
@@ -21,6 +22,7 @@ int main()
 	setlocale(LC_ALL, "Portuguese");
 
 	//menu_central();
+
 
 	cout << endl;
 

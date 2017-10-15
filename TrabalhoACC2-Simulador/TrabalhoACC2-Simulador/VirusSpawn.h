@@ -42,7 +42,7 @@ void chamar_busca(int quantidade_linhas_matriz, int linha, int coluna)
 	switch (quantidade_linhas_matriz)
 	{
 	case QUANTIDADE_LINHAS_PARA_MENORES:
-		busca_recursiva(campoPequeno, QUANTIDADE_LINHAS_PARA_MENORES, linha, coluna, 1);
+		busca_recursiva(campoPequeno, QUANTIDADE_LINHAS_PARA_MENORES, linha, coluna, 0);
 		break;
 	case QUANTIDADE_LINHAS_PARA_MEDIOS:
 		busca_recursiva(campoMedio, QUANTIDADE_LINHAS_PARA_MEDIOS, linha, coluna, 0);

@@ -71,7 +71,6 @@ void menu_da_localizacao_manual(int tamanho, int &linha, int &coluna)
 			cout << escrita_linha[2] << endl;
 			cin >> linha;
 			break;
-
 		default:
 			break;
 		}
