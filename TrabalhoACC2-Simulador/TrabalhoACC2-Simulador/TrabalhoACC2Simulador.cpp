@@ -23,8 +23,15 @@ int main()
 
 	//menu_central();
 
-	gerar_posicao_virus(QUANTIDADE_LINHAS_PARA_GRANDES, CENTRO);
+	centro(QUANTIDADE_LINHAS_PARA_MEDIOS);
+	canto_superior_esquerdo(QUANTIDADE_LINHAS_PARA_MEDIOS);
+	canto_superior_direito(QUANTIDADE_LINHAS_PARA_MEDIOS);
+	canto_inferior_esquerdo(QUANTIDADE_LINHAS_PARA_MEDIOS);
+	canto_inferior_direito(QUANTIDADE_LINHAS_PARA_MEDIOS);
 
+
+
+	escreverUmDosCampos(TAMANHO_MEDIO);
 
 	cout << endl;
 
