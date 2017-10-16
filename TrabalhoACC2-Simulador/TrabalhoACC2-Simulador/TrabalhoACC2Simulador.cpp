@@ -7,25 +7,16 @@
 
 #include "Flood.h"
 #include "VirusSpawn.h"
-#include "suporte_escrita.h"
 #include "CercaSpawn.h"
+#include "suporte_escrita.h"
 
 using namespace std;
-
-void escolhas_menu()
-{
-	
-}
 
 int main()
 {
 	setlocale(LC_ALL, "Portuguese");
 
-	//menu_central();
-
-	posicionar_cercas(QUANTIDADE_LINHAS_PARA_MENORES);
-
-	escreverUmDosCampos(TAMANHO_PEQUENO);
+	menu_central();
 
 	cout << endl;
 

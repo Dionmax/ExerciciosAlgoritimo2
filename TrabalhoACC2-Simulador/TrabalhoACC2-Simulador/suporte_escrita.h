@@ -84,7 +84,7 @@ void menu_da_localizacao_manual(int tamanho, int &linha, int &coluna)
 	} while (!testar_localizacao(tamanho, linha, coluna));
 }
 
-void menu_central()
+void menu_virus()
 {
 	int linha = 0, coluna = 0;
 
@@ -123,5 +123,65 @@ void menu_central()
 		break;
 	}
 }
+
+void menu_cercas()
+{
+	int opcao = 0;
+
+	cout << "Gerar cercas numa matriz:" << endl <<
+		"1 - Pequena" << endl <<
+		"2 - Média" << endl <<
+		"3 - Grande" << endl;
+
+	cin >> opcao;
+
+	switch (opcao)
+	{
+	case 1:
+		posicionar_cercas(QUANTIDADE_LINHAS_PARA_MENORES);
+		escreverUmDosCampos(TAMANHO_PEQUENO);
+		break;
+	case 2:
+		posicionar_cercas(QUANTIDADE_LINHAS_PARA_MEDIOS);
+		escreverUmDosCampos(TAMANHO_MEDIO);
+		break;
+	case 3:
+		posicionar_cercas(QUANTIDADE_LINHAS_PARA_GRANDES);
+		escreverUmDosCampos(TAMANHO_GRANDE);
+	default:
+		break;
+	}
+}
+
+void menu_central()
+{
+	int opcao = 0;
+
+	bool parar = true;
+
+	while (parar)
+	{
+		cout << "1 - Simular virus" << endl;
+		cout << "2 - Simular cercas(Não funcional)" << endl;
+		cout << "3 - Sair do menu" << endl;
+
+		cin >> opcao;
+
+		switch (opcao)
+		{
+		case 1:
+			menu_virus();
+			break;
+		case 2:
+			menu_cercas();
+			break;
+		case 3:
+			parar = false;
+		default:
+			break;
+		}
+	}
+}
+
 #endif // !SUPORTE_ESCRITA_H
 
