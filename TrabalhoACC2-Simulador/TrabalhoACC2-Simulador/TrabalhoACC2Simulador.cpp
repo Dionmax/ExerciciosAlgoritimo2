@@ -14,7 +14,7 @@ using namespace std;
 
 void escolhas_menu()
 {
-
+	
 }
 
 int main()
@@ -23,15 +23,9 @@ int main()
 
 	//menu_central();
 
-	centro(QUANTIDADE_LINHAS_PARA_MEDIOS);
-	canto_superior_esquerdo(QUANTIDADE_LINHAS_PARA_MEDIOS);
-	canto_superior_direito(QUANTIDADE_LINHAS_PARA_MEDIOS);
-	canto_inferior_esquerdo(QUANTIDADE_LINHAS_PARA_MEDIOS);
-	canto_inferior_direito(QUANTIDADE_LINHAS_PARA_MEDIOS);
+	posicionar_cercas(QUANTIDADE_LINHAS_PARA_MENORES);
 
-
-
-	escreverUmDosCampos(TAMANHO_MEDIO);
+	escreverUmDosCampos(TAMANHO_PEQUENO);
 
 	cout << endl;
 
