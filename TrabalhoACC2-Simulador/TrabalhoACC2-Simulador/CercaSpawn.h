@@ -16,25 +16,23 @@ const char BARREIRA = '@';
 const int QUANTIDADE_CERCAS_P = 20;
 const int QUANTIDADE_CERCAS_G = 25;
 
-int gerar_cercas(char campo[][QUANTIDADE_COLUNAS], int tamanho_matriz, int comeco_linha, int comeco_coluna, int limite_linha, int limite_coluna,int cercas)
+int gerar_cercas(char campo[][QUANTIDADE_COLUNAS], int tamanho_matriz, int comeco_linha, int comeco_coluna, int limite_linha, int limite_coluna, int cercas)
 {
 	int colocar_cerca;
-
-	if (cercas == 0)
-		return NADA;
 
 	for (int linha = comeco_linha; linha < limite_linha; linha++)
 		for (int coluna = comeco_coluna; coluna < limite_coluna; coluna++)
 		{
-			colocar_cerca = rand() % 5;
+			colocar_cerca = rand() % cercas;
 
-			if (colocar_cerca == 1 && verificar_casa(campo, tamanho_matriz, linha, coluna))
+			if (colocar_cerca % 2 == 1 && verificar_casa(campo, tamanho_matriz, linha, coluna))
 			{
 				campo[linha][coluna] = BARREIRA;
-				gerar_cercas(campo, tamanho_matriz, linha, coluna, limite_linha, limite_coluna, cercas - 1);
+				cercas--;
 			}
 		}
-			
+
+	return cercas;
 }
 
 void centro(int tamanho_matriz)
