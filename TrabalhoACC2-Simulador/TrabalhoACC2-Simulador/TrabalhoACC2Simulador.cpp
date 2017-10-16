@@ -23,6 +23,8 @@ int main()
 
 	//menu_central();
 
+	gerar_posicao_virus(QUANTIDADE_LINHAS_PARA_GRANDES, CENTRO);
+
 
 	cout << endl;
 

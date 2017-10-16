@@ -16,7 +16,10 @@ const char BARREIRA = '@';
 const int QUANTIDADE_CERCAS_P = 20;
 const int QUANTIDADE_CERCAS_G = 25;
 
-const int TAMANHO = QUANTIDADE_LINHAS_PARA_MEDIOS;
+void gerar_cercas(int quantidade_linhas_matriz)
+{
+
+}
 
 
 #endif // !CERCA_SPAWN_H

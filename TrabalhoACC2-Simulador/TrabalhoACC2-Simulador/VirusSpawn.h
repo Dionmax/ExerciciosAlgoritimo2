@@ -4,11 +4,11 @@
 #include <time.h>
 
 const int NADA = 0;
-const int CENTRO = 0;
 const int CANTO_SUPERIOR_E = 1;
 const int CANTO_SUPERIOR_D = 2;
 const int CANTO_INFERIOR_E = 3;
 const int CANTO_INFERIOR_D = 4;
+const int CENTRO = 5;
 
 bool verificar_casa(char campo[][QUANTIDADE_COLUNAS], int tamnho_matriz, int linha, int coluna)
 {
@@ -85,6 +85,10 @@ void gerar_posicao_virus(int quantidade_linhas_matriz,int posicao)
 	case CANTO_INFERIOR_D:
 		linha += linha_inferior;
 		coluna += coluna_direita;
+		break;
+	case CENTRO:
+		linha += linha_centro;
+		coluna += coluna_centro;
 	default:
 		break;
 	}
