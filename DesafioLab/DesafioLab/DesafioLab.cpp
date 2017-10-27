@@ -28,6 +28,10 @@ int main()
 
 	int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ];
 
+	for (int linha = 0; linha < TAMANHO_MATRIZ; linha++)
+		for (int coluna = 0; coluna < TAMANHO_MATRIZ; coluna++)
+			matriz[linha][coluna] = 0;
+
 	prencher_matriz(matriz, 1, 2);
 	prencher_matriz(matriz, 1, 3);
 	prencher_matriz(matriz, 2, 3);

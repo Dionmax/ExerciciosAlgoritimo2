@@ -1,6 +1,11 @@
 #ifndef SUPORTE_BUSCA_H
 #define SUPORTE_BUSCA_H
 
+#include "iostream"
+#include "string"
+
+using namespace std;
+
 const int TAMANHO_MATRIZ = 6;
 const int CAMINHO = 1;
 const int NADA = 0;
@@ -22,18 +27,12 @@ void prencher_matriz(int matriz[][TAMANHO_MATRIZ], int posicao_1, int posicao_2)
 	matriz[linha][coluna] = CAMINHO;
 }
 
-Direcao verificar_caminho(int matriz[][TAMANHO_MATRIZ], int linha, int coluna)
+bool verificar_caminho(int matriz[][TAMANHO_MATRIZ], int linha, int coluna)
 {
-	Direcao caminho;
-
-	caminho.ida = false;
-	caminho.volta = false;
+	bool caminho = false;
 
 	if (matriz[linha][coluna] == CAMINHO)
-		caminho.ida = true;
-
-	if (matriz[coluna][linha] == CAMINHO)
-		caminho.volta = true;
+		caminho = true;
 
 	return caminho;
 }
@@ -53,12 +52,22 @@ bool passou(int vertices[])
 
 int buscar_caminhos(int matriz[][TAMANHO_MATRIZ], int linha, int coluna)
 {
-	Direcao caminho = verificar_caminho(matriz, linha, coluna);
-
-	if (caminho.ida)
-		buscar_caminhos(matriz, linha, coluna + 1);
-	else
+	if (coluna == TAMANHO_MATRIZ || linha == TAMANHO_MATRIZ)
 		return NADA;
+
+	//cout <<"linha: "  << linha << endl;
+	//cout << "coluna: " << coluna << endl;
+
+	while (passou())
+	{
+		if (verificar_caminho(matriz, linha, coluna))
+			buscar_caminhos(matriz, coluna, coluna + 1);
+
+		for (int indice = 0; indice < TAMANHO_MATRIZ; indice++)
+			buscar_caminhos(matriz, linha, coluna + 1);
+	}
+
+	return NADA;
 }
 
 #endif // !SUPORTE_BUSCA_H
