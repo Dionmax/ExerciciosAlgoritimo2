@@ -11,15 +11,8 @@ const int NADA = 0;
 const int NUMERO_NOTAS = 3;
 const int NUMERO_MEDIAS = 3;
 const int NUMERO_ALUNOS = 5;
+const int NUMERO_MATERIAS = 5;
 
-template <typename T>
-void escreva(T alguma_coisa, bool espaco = false)
-{
-	cout << alguma_coisa;
-
-	if (espaco)
-		cout << " ";
-}
 
 struct Medias
 {
@@ -28,20 +21,18 @@ struct Medias
 
 struct Materias
 {
-	string nome;
+	string nome[NUMERO_MATERIAS];
 
 	Medias media[NUMERO_MEDIAS];
 
-	double media_final_materia()
+	int media_final(int aluno)
 	{
-		double total = 0;
-
+		int total = 0;
 		for (int indice = 0; indice < NUMERO_NOTAS; indice++)
-			total += media->nota[indice];
+		{
 
-		return total / 3;
+		}
 	}
-
 };
 
 struct Aluno
@@ -49,7 +40,7 @@ struct Aluno
 	string nome[NUMERO_ALUNOS],
 		email[NUMERO_ALUNOS];
 
-	Materias materia[NUMERO_ALUNOS];
+	Materias materia[NUMERO_MATERIAS];
 };
 
 void escrever_dados(Aluno aluno)
@@ -58,30 +49,26 @@ void escrever_dados(Aluno aluno)
 
 	cout << aluno.nome[0] << endl;
 	cout << aluno.email[0] << endl;
-	cout << aluno.materia[0].nome << endl;
-	cout << aluno.materia->media_final_materia() << endl;
+	cout << aluno.materia[0].nome[0] << endl;
+	//cout << aluno.materia->media_final_materia(0) << endl;
 }
 
-void dados_alunos(int aluno)
+void dados_alunos(int numero_aluno)
 {
-	Aluno aluno_um,
-		aluno_dois,
-		aluno_tres,
-		aluno_quatro,
-		aluno_cinco;
+	Aluno aluno[NUMERO_ALUNOS];
 
-	switch (aluno)
+	switch (numero_aluno)
 	{
 	case 0:
-		aluno_um.nome[0] = "Dion";
-		aluno_um.email[0] = "dionmaxfn@gmail.com";
-		aluno_um.materia[0].nome = "ingles";
-		aluno_um.materia[0].media->nota[0] = 8.5;
-		aluno_um.materia[0].media->nota[1] = 7;
-		aluno_um.materia[0].media->nota[2] = 9;
-		aluno_um.materia[0].media_final_materia();
+		aluno[0].nome[0] = "Dion";
+		aluno[0].email[0] = "dionmaxfn@gmail.com";
+		aluno[0].materia[0].nome[0] = "ingles";
+		aluno[0].materia[0].media[0].nota[0] = 8.5;
+		aluno[0].materia[0].media[0].nota[1] = 7;
+		aluno[0].materia[0].media[0].nota[2] = 9;
+		//aluno[0].materia[0].media_final_materia(0);
 
-		escrever_dados(aluno_um);
+		escrever_dados(aluno[0]);
 		break;
 
 	default:
@@ -93,7 +80,7 @@ void dados_alunos(int aluno)
 
 int main()
 {
-	dados_alunos(0);
+	 dados_alunos(0);
 
 	cin.get();
 
