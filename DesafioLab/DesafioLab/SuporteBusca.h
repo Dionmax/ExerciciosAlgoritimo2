@@ -58,14 +58,17 @@ int buscar_caminhos(int matriz[][TAMANHO_MATRIZ], int linha, int coluna)
 	//cout <<"linha: "  << linha << endl;
 	//cout << "coluna: " << coluna << endl;
 
-	while (passou())
+	//while (passou())
+	//{
+	if (verificar_caminho(matriz, linha, coluna))
 	{
-		if (verificar_caminho(matriz, linha, coluna))
 			buscar_caminhos(matriz, coluna, coluna + 1);
+			cout << "coluna: " << coluna +1<< endl;
+	}
 
 		for (int indice = 0; indice < TAMANHO_MATRIZ; indice++)
 			buscar_caminhos(matriz, linha, coluna + 1);
-	}
+	//}
 
 	return NADA;
 }
