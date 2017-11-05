@@ -5,82 +5,78 @@
 #include <iostream>
 #include <string>
 
+#include "SuporteEscrita.h"
+#include "SuporteStructs.h"
+
 using namespace std;
 
-const int NADA = 0;
-const int NUMERO_NOTAS = 3;
-const int NUMERO_MEDIAS = 3;
-const int NUMERO_ALUNOS = 5;
-const int NUMERO_MATERIAS = 5;
-
-
-struct Medias
+bool dados_alunos(int numero_aluno)
 {
-	double nota[NUMERO_NOTAS];
-};
+	bool manter = true;
 
-struct Materias
-{
-	string nome[NUMERO_MATERIAS];
-
-	Medias media[NUMERO_MEDIAS];
-
-	int media_final(int aluno)
-	{
-		int total = 0;
-		for (int indice = 0; indice < NUMERO_NOTAS; indice++)
-		{
-
-		}
-	}
-};
-
-struct Aluno
-{
-	string nome[NUMERO_ALUNOS],
-		email[NUMERO_ALUNOS];
-
-	Materias materia[NUMERO_MATERIAS];
-};
-
-void escrever_dados(Aluno aluno)
-{
-	//for(int indice = 0; indice < NUMERO_ALUNOS; indice ++)
-
-	cout << aluno.nome[0] << endl;
-	cout << aluno.email[0] << endl;
-	cout << aluno.materia[0].nome[0] << endl;
-	//cout << aluno.materia->media_final_materia(0) << endl;
-}
-
-void dados_alunos(int numero_aluno)
-{
 	Aluno aluno[NUMERO_ALUNOS];
+
+	gerar_nomes(aluno);
 
 	switch (numero_aluno)
 	{
 	case 0:
-		aluno[0].nome[0] = "Dion";
-		aluno[0].email[0] = "dionmaxfn@gmail.com";
-		aluno[0].materia[0].nome[0] = "ingles";
-		aluno[0].materia[0].media[0].nota[0] = 8.5;
-		aluno[0].materia[0].media[0].nota[1] = 7;
-		aluno[0].materia[0].media[0].nota[2] = 9;
-		//aluno[0].materia[0].media_final_materia(0);
-
+		gerar_notas(aluno[0]);
 		escrever_dados(aluno[0]);
 		break;
 
+	case 1:
+		gerar_notas(aluno[1]);
+		escrever_dados(aluno[1]);
+		break;
+
+	case 2:
+		gerar_notas(aluno[2]);
+		escrever_dados(aluno[2]);
+		break;
+
+	case 3:
+		gerar_notas(aluno[3]);
+		escrever_dados(aluno[3]);
+		break;
+
+	case 4:
+		gerar_notas(aluno[4]);
+		escrever_dados(aluno[4]);
+		break;
+	case 5:
+		manter = false;
 	default:
 		break;
 	}
 
-	return ;
+	return manter;
 }
+
+int escolhas()
+{
+	int escolha = 0;
+
+	cout << "Escolhas disponiveis para alunos: 1 a 5." << endl << "Sair : 6" << endl;
+
+	do
+	{
+		cin >> escolha;
+		escolha -= 1;
+
+	} while (dados_alunos(escolha));
+
+	return escolha;
+}
+
 
 int main()
 {
-	 dados_alunos(0);
+	setlocale(LC_ALL, "Portuguese");
+
+	srand(time(NULL));
+
+	escolhas();
 
 	cin.get();
 
