@@ -24,10 +24,13 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MapaJogo.h">
+    <ClInclude Include="Atributos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Atributos.h">
+    <ClInclude Include="Mapa.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SuporteEscrita.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -35,7 +38,7 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TrabalhoPokemon.cpp">
+    <ClCompile Include="TrabalhoPokemonV2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
