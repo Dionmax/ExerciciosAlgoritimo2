@@ -12,6 +12,8 @@ using namespace std;
 #define CENTRO_POKEMON 'C'
 #define CERCA '#'
 
+const int NUMERO_OPONENTES = 4;
+
 char mapa[TAMANHO_MATRIZ_PRINCIPAL][TAMANHO_MATRIZ_PRINCIPAL];
 
 void gerar_mapa()
@@ -33,10 +35,10 @@ bool vericar_casa_livre(int linha, int coluna)
 
 struct Posicoes
 {
-	int linha,
-		coluna;
+	int linha = 0,
+		coluna = 0;
 
-	Posicoes(char alguem)
+	Posicoes(char alguem,int& posicaoX,int& posicaoY)
 	{
 		do
 		{
@@ -48,16 +50,17 @@ struct Posicoes
 	}
 };
 
-void gerar_posicoes()
+void gerar_posicoes(Personagem oponente[NUMERO_OPONENTES])
 {
-	mapa[7][7] = JOGADOR;
+	for (int indice = 0; indice < NUMERO_OPONENTES; indice++)
+		Posicoes::Posicoes(OPONENTE, oponente[indice].linha, oponente[indice].coluna);
 
-	for (int cercas = 0; cercas < 10; cercas++)
-		Posicoes::Posicoes(CERCA);
+}
 
-	for (int oponete = 0; oponete < 4; oponete++)
-		Posicoes::Posicoes(OPONENTE);
+void movimento_oponente()
+{
+	Personagem oponente[NUMERO_OPONENTES];
 
-	Posicoes::Posicoes(LIDER_GINASIO);
-	Posicoes::Posicoes(CENTRO_POKEMON);
+	for (int indice = 0; indice < NUMERO_OPONENTES; indice++)
+		mapa[oponente[indice].linha][oponente[indice].coluna] = OPONENTE;
 }

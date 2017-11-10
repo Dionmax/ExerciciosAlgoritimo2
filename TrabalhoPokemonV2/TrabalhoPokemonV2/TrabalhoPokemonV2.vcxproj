@@ -146,6 +146,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Acoes.h" />
     <ClInclude Include="Atributos.h" />
     <ClInclude Include="Mapa.h" />
     <ClInclude Include="stdafx.h" />

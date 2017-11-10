@@ -36,5 +36,7 @@ struct Pokemon
 struct Personagem
 {
 	Pokemon pokemon[2];
+
+	int linha, coluna;
 };
 
