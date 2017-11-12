@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "Atributos.h"
+//#include "Acoes.h"
 
 using namespace std;
 
@@ -36,19 +37,28 @@ bool verificar_casa_livre(int linha, int coluna)
 	return livre;
 }
 
+void mudar_valores_linha_coluna(int &linha, int &coluna)
+{
+	do
+	{
+		linha = rand() % TAMANHO_MATRIZ_PRINCIPAL - 1;
+		coluna = rand() % TAMANHO_MATRIZ_PRINCIPAL - 1;
+	} while (verificar_casa_livre(linha, coluna));
+}
+
 void gerar_objetos()
 {
 	int linha, coluna;
 
 	for (int indice = 0; indice < NUMERO_CERCAS; indice++)
 	{
-		do
-		{
-			linha = rand() % TAMANHO_MATRIZ_PRINCIPAL - 1;
-			coluna = rand() % TAMANHO_MATRIZ_PRINCIPAL - 1;
-		} while (verificar_casa_livre(linha,coluna));
-
+		mudar_valores_linha_coluna(linha, coluna);
 		mapa[linha][coluna] = CERCA;
 	}
 
+	mudar_valores_linha_coluna(linha, coluna);
+	mapa[linha][coluna] = CENTRO_POKEMON;
+
+	/*mudar_valores_linha_coluna(linha, coluna);
+	mapa[linha][coluna] = LIDER_GINASIO;*/
 }

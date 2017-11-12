@@ -13,17 +13,29 @@ using namespace std;
 #define DIREITA 'd'
 #define ESQUERDA 'a'
 #define ACAO 'j'
+#define VAZIO ' '
 
 const int NADA = 0;
 
-bool verificar_adjacencia(int linha, int coluna)
+char verificar_adjacencia(int linha, int coluna)
 {
-	bool adjacencia = false;
+	char adjacencia = VAZIO;
 
-	for (int indice = -1; indice <= 1; indice++)
-		for (int contador = -1; contador <= 1; contador++)
-			if (mapa[linha + indice][coluna + contador] != ' ')
-				adjacencia = true;
+	if (mapa[linha + 1][coluna] != VAZIO &&
+		mapa[linha + 1][coluna] != CERCA)
+		adjacencia = mapa[linha + 1][coluna];
+
+	if (mapa[linha - 1][coluna] != VAZIO &&
+		mapa[linha - 1][coluna] != CERCA)
+		adjacencia = mapa[linha - 1][coluna];
+
+	if (mapa[linha][coluna + 1] != VAZIO&&
+		mapa[linha][coluna + 1] != CERCA)
+		adjacencia = mapa[linha][coluna + 1];
+
+	if (mapa[linha][coluna - 1] != VAZIO &&
+		mapa[linha][coluna - 1] != CERCA)
+		adjacencia = mapa[linha][coluna - 1];
 
 	return adjacencia;
 }
@@ -49,27 +61,28 @@ void movimentar_jogador(int &linha, int &coluna)
 	switch (tecla)
 	{
 	case CIMA:
-		mapa[linha][coluna] = ' ';
+		mapa[linha][coluna] = VAZIO;
 		if (verificar_casa_valida(linha - 1, coluna))
 			linha--;
 		break;
 	case BAIXO:
-		mapa[linha][coluna] = ' ';
+		mapa[linha][coluna] = VAZIO;
 		if (verificar_casa_valida(linha + 1, coluna))
 			linha++;
 		break;
 	case ESQUERDA:
-		mapa[linha][coluna] = ' ';
+		mapa[linha][coluna] = VAZIO;
 		if (verificar_casa_valida(linha, coluna - 1))
 			coluna--;
 		break;
 	case DIREITA:
-		mapa[linha][coluna] = ' ';
+		mapa[linha][coluna] = VAZIO;
 		if (verificar_casa_valida(linha, coluna + 1))
 			coluna++;
 		break;
 	case ACAO:
-		verificar_adjacencia(linha, coluna);
+		if (verificar_adjacencia(linha, coluna) != ' ')
+			cout << verificar_adjacencia(linha, coluna);
 		break;
 	default:
 		cout << "enter";
@@ -109,7 +122,7 @@ void gerar_oponentes(Personagem oponente[NUMERO_OPONENTES])
 
 void mover_oponentes(int linhaJogador, int colunaJogador, int &linhaOponetne, int &colunaOponete)
 {
-	mapa[linhaOponetne][colunaOponete] = ' ';
+	mapa[linhaOponetne][colunaOponete] = VAZIO;
 	perseguir_jogador(linhaJogador, colunaJogador, linhaOponetne, colunaOponete, true);
 	mapa[linhaOponetne][colunaOponete] = OPONENTE;
 }

@@ -13,27 +13,6 @@
 
 using namespace std;
 
-void teste2()
-{
-	int linha = 7,
-		coluna = 7;
-
-	char t;
-
-	t = cin.get();
-
-	cout << t;
-
-	while (true)
-	{
-		cout << t;
-
-		t = cin.get();
-
-		cout << t;
-	}
-}
-
 void teste()
 {
 	gerar_mapa();
@@ -58,7 +37,7 @@ void teste()
 
 		movimentar_jogador(linha, coluna);
 
-		movimentar_oponentes(oponente,linha, coluna);
+		//	movimentar_oponentes(oponente,linha, coluna);
 
 		system("cls");
 	}
