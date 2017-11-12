@@ -3,6 +3,8 @@
 #include <string>
 #include <iostream>
 
+#include "Mapa.h"
+
 using namespace std;
 
 #define FOGO 'F'
@@ -37,6 +39,6 @@ struct Personagem
 {
 	Pokemon pokemon[2];
 
-	int linha, coluna;
+	int linha[NUMERO_OPONENTES], coluna[NUMERO_OPONENTES];
 };
 

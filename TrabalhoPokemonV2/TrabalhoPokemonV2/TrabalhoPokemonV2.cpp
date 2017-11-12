@@ -13,9 +13,25 @@
 
 using namespace std;
 
-void teste2() 
+void teste2()
 {
-	
+	int linha = 7,
+		coluna = 7;
+
+	char t;
+
+	t = cin.get();
+
+	cout << t;
+
+	while (true)
+	{
+		cout << t;
+
+		t = cin.get();
+
+		cout << t;
+	}
 }
 
 void teste()
@@ -25,17 +41,24 @@ void teste()
 	int linha = 7,
 		coluna = 7;
 
-	char tecla;
+	int linha1 = 1,
+		coluna1 = 1;
+
+	Personagem oponente[NUMERO_OPONENTES];
 
 	mapa[linha][coluna] = JOGADOR;
 
-	movimento_oponente();
-	
+	gerar_oponentes(oponente);
+
+	gerar_objetos();
+
 	while (true)
 	{
 		escrever_mapa();
 
-		movimentar_jogador(tecla,linha,coluna);
+		movimentar_jogador(linha, coluna);
+
+		movimentar_oponentes(oponente,linha, coluna);
 
 		system("cls");
 	}
@@ -50,6 +73,6 @@ int main()
 
 	cin.get();
 	cin.get();
-    return 0;
+	return 0;
 }
 
