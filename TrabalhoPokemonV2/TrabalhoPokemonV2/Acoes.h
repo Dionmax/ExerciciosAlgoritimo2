@@ -38,6 +38,7 @@ void executar_acao_jogador(char opcao, Personagem& jogador)
 		reustaurar_vida(jogador);
 		break;
 	case LIDER_GINASIO:
+		NADA;
 	default:
 		break;
 	}
