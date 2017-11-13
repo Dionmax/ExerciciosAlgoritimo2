@@ -130,15 +130,153 @@ void mover_oponentes(int linhaJogador, int colunaJogador, int &linhaOponetne, in
 void movimentar_oponentes(Personagem oponente[NUMERO_OPONENTES], int linhaJogador, int colunaJogador)
 {
 	for (int indice = 0; indice < NUMERO_OPONENTES; indice++)
-		mover_oponentes(linhaJogador, colunaJogador, oponente[indice].linha[indice], oponente[indice].coluna[indice]);
+		if (oponente[indice].vivo)
+			mover_oponentes(linhaJogador, colunaJogador, oponente[indice].linha[indice], oponente[indice].coluna[indice]);
 }
 
-void verificar_possivel_batalha(Personagem& jogador, Personagem& oponente)
+void matar_oponente(Personagem& jogador, Personagem oponente[NUMERO_OPONENTES], int numero_oponente)
+{
+	mapa[oponente[numero_oponente].linha[numero_oponente]][oponente[numero_oponente].coluna[numero_oponente]] = ' ';
+	oponente[numero_oponente].vivo = false;
+}
+
+int verificar_monstros_vivos(Personagem jogador)
+{
+	int numero_de_monstro_vivo = 0;
+
+	for (int indice = 0; indice < NUMERO_MONSTROS_JOGADOR; indice++)
+		if (jogador.pokemon[indice].vida > NADA)
+			numero_de_monstro_vivo++;
+
+	return numero_de_monstro_vivo;
+}
+
+bool vantagem(char tipo_um, char tipo_dois)
+{
+	//Elétrico -> Voador -> Grama -> Água -> Fogo -> Elétrico
+
+	char tabela_vantagem[5] = { ELETRICO,VOADOR,GRAMA,AGUA,FOGO };
+
+	int t_um, t_dois;
+
+	bool vantage = false;
+
+	if (tipo_um == FOGO && tipo_dois == ELETRICO)
+		vantage = true;
+
+	for (int indice = 0; indice < 5; indice++)
+		if (tipo_um == tabela_vantagem[indice])
+			t_um = indice;
+
+	for (int indice = 0; indice < 5; indice++)
+		if (tipo_dois == tabela_vantagem[indice])
+			t_dois = indice;
+
+	if (t_um < t_dois)
+		vantage = true;
+
+	return vantage;
+}
+
+void dano_ataque_oponente(Personagem& jogador, Personagem oponente, int numero_monstro, int golpe_escolhido, bool modificador)
 {
 
 }
 
-void iniciar_combate_oponente(Personagem& jogador, Personagem& oponente)
+void dano_ataque_jogador(Personagem& jogador, Personagem oponente[NUMERO_OPONENTES], int numero_oponente, int numero_monstro, int golpe_escolhido, bool modificador)
 {
+	int dano = 0,
+		modificador_um = rand() % 15,
+		modificador_dois = 1;
 
+	if (modificador)
+		modificador_dois = 1.5;
+
+	dano = ((modificador_um + (jogador.pokemon[numero_monstro].ataque +
+		jogador.pokemon[numero_monstro].golpes[golpe_escolhido].poder)) * modificador_dois) - oponente[numero_oponente].pokemon[numero_monstro].defesa;
+
+	dano_causado(dano);
+
+	oponente[numero_oponente].pokemon[numero_monstro].vida -= dano;
+
+	jogador.pokemon[numero_monstro].golpes[golpe_escolhido].utilizacoes--;
+}
+
+bool vez_do_player(Personagem& jogador, Personagem oponente[NUMERO_OPONENTES], int numero_oponente)
+{
+	bool vez = false;
+
+	for (int indice = 0; indice < NUMERO_MONSTROS_JOGADOR; indice++)
+		for (int contador = 0; contador < NUMERO_MONSTROS_JOGADOR; contador++)
+			if (jogador.pokemon[indice].vida > NADA)
+				if (jogador.pokemon[indice].velocidade > oponente[numero_oponente].pokemon[contador].velocidade)
+					vez = true;
+
+	return vez;
+}
+
+void fazer_ataque_oponente(Personagem& jogador, Personagem oponente[NUMERO_OPONENTES], int numero_oponente, int monstro_jogador)
+{
+	int monstro_escolhido = 0;
+
+	bool vantage = vantagem(oponente[numero_oponente].pokemon[monstro_escolhido].tipo, jogador.pokemon[monstro_jogador].tipo);
+
+	if (oponente[numero_oponente].pokemon[monstro_escolhido].vida <= NADA)
+		monstro_escolhido++;
+
+}
+
+void fazer_ataque_jogador(Personagem& jogador, Personagem oponente[NUMERO_OPONENTES], int numero_oponente, int monstro_escolhido, int golpe_escolhido)
+{
+	bool modificador = vantagem(jogador.pokemon[monstro_escolhido].tipo, oponente[numero_oponente].pokemon[monstro_escolhido].tipo);
+	dano_ataque_jogador(jogador, oponente, numero_oponente, monstro_escolhido, golpe_escolhido, modificador);
+}
+
+void escolhas_pre_combate_jogador(Personagem& jogador, Personagem oponente[NUMERO_OPONENTES], int numero_oponente)
+{
+	bool ordem_jogar;
+
+	int monstro_escolhido;
+
+	listar_status_pokemon_jogador(jogador, "Jogador");
+	listar_status_pokemon_jogador(oponente[numero_oponente], "Oponente");
+
+
+	ordem_jogar = vez_do_player(jogador, oponente, numero_oponente);
+	monstro_escolhido = menu_escolha_monstro(jogador);
+
+	if (verificar_monstros_vivos(jogador) > NADA)
+		while (jogador.pokemon[monstro_escolhido].vida > NADA)
+		{
+			if (ordem_jogar)
+				fazer_ataque_jogador(jogador, oponente, numero_oponente, monstro_escolhido, menu_escolha_ataque(jogador, monstro_escolhido));
+			else
+				ordem_jogar = true;
+
+			if (verificar_monstros_vivos(oponente[numero_oponente]) > NADA)
+				fazer_ataque_oponente(jogador, oponente, numero_oponente, monstro_escolhido);
+			else
+				matar_oponente(jogador, oponente, numero_oponente);
+		}
+
+	if()
+}
+
+void iniciar_combate_oponente(Personagem& jogador, Personagem oponente[NUMERO_OPONENTES], int numero_oponente)
+{
+	system("cls");
+
+	aviso_combate();
+
+	escolhas_pre_combate_jogador(jogador, oponente, numero_oponente);
+
+	cin.get();
+	cin.get();
+}
+
+void verificar_possivel_batalha(Personagem& jogador, Personagem oponente[NUMERO_OPONENTES])
+{
+	for (int indice = 0; indice < NUMERO_OPONENTES; indice++)
+		if (verificar_adjacencia(oponente[indice].linha[indice], oponente[indice].coluna[indice]) == JOGADOR)
+			iniciar_combate_oponente(jogador, oponente, indice);
 }

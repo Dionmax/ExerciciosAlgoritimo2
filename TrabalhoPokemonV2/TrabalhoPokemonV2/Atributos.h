@@ -15,6 +15,7 @@ using namespace std;
 
 const int NUMEROS_MONSTROS = 12;
 const int NUMERO_GOLPES = 4;
+const int NUMERO_MONSTROS_JOGADOR = 2;
 
 const string NOMES_POKEMON[NUMEROS_MONSTROS] = {
 	"Chamusco","Queimadinho", "Esguicho", "Lagoa Azul", "Ventinho", "Flutuadoris",
@@ -26,10 +27,10 @@ const string NOMES_PODER[NUMERO_GOLPES] = { "Golpe primario","Investida","Ataque
 
 struct Golpe
 {
-	string nome[NUMERO_GOLPES];
+	string nome;
 
-	int poder[NUMERO_GOLPES],
-		utilizacoes[NUMERO_GOLPES];
+	int poder,
+		utilizacoes;
 };
 
 struct Pokemon
@@ -43,14 +44,18 @@ struct Pokemon
 		defesa,
 		velocidade;
 
-	Golpe golpes[NUMEROS_MONSTROS];
+	Golpe golpes[NUMERO_GOLPES];
+
+	 int vida_inicial = vida;
 };
 
 struct Personagem
 {
-	Pokemon pokemon[2];
+	Pokemon pokemon[NUMERO_MONSTROS_JOGADOR];
 
 	int linha[NUMERO_OPONENTES], coluna[NUMERO_OPONENTES];
+
+	bool vivo = true;
 };
 
 int gerar_valores_aleatorios(int limite)
@@ -71,9 +76,9 @@ void atribuir_mostros(Pokemon pokemon[NUMEROS_MONSTROS])
 
 		for (int contador = 0; contador < NUMERO_GOLPES; contador++)
 		{
-			pokemon[indice].golpes[indice].nome[contador] = NOMES_PODER[contador];
-			pokemon[indice].golpes[indice].poder[contador] = rand() % 20 + 30;
-			pokemon[indice].golpes[indice].utilizacoes[contador] = rand() % 5 + 5;
+			pokemon[indice].golpes[contador].nome = NOMES_PODER[contador];
+			pokemon[indice].golpes[contador].poder = rand() % 20 + 30;
+			pokemon[indice].golpes[contador].utilizacoes = rand() % 5 + 5;
 		}
 	}
 }
@@ -106,10 +111,10 @@ void sortiar_monstros(Personagem& jogador, Personagem oponentes[], Pokemon monst
 	int numero,
 		ja_foi[NUMEROS_MONSTROS] = { -1 };
 
-	for (int indice = 0; indice < 2; indice++)
+	for (int indice = 0; indice < NUMERO_MONSTROS_JOGADOR; indice++)
 		jogador.pokemon[indice] = monstros[numero_para_monstro(numero, ja_foi)];
 
 	for (int indice = 0; indice < NUMERO_OPONENTES; indice++)
-		for (int contador = 0; contador < 2; contador++)
+		for (int contador = 0; contador < NUMERO_MONSTROS_JOGADOR; contador++)
 			oponentes[indice].pokemon[contador] = monstros[numero_para_monstro(numero, ja_foi)];
 }

@@ -29,11 +29,11 @@ void andamento_jogo()
 
 	sortiar_monstros(Jogador, oponente, monstros_jogo);
 
-	mostrar_status_monstros(monstros_jogo);
+	pokemons_sortiados(Jogador, oponente);
 
 	system("cls");
 
-	pokemons_sortiados(Jogador, oponente);
+	mostrar_status_monstros(monstros_jogo);
 
 	system("cls");
 
@@ -51,13 +51,16 @@ void andamento_jogo()
 
 		movimentar_oponentes(oponente, Jogador.linha[0], Jogador.coluna[0]);
 
+		verificar_possivel_batalha(Jogador,oponente);
+
 		system("cls");
 	}
-
 }
 
 int main()
 {
+	setlocale(LC_ALL, "Portuguese");
+
 	srand(time(0));
 
 	andamento_jogo();
