@@ -246,7 +246,7 @@ void escolhas_pre_combate_jogador(Personagem& jogador, Personagem oponente[NUMER
 	monstro_escolhido = menu_escolha_monstro(jogador);
 
 	if (verificar_monstros_vivos(jogador) > NADA)
-		while (jogador.pokemon[monstro_escolhido].vida > NADA)
+		while (jogador.pokemon[monstro_escolhido].vida >= NADA)
 		{
 			if (ordem_jogar)
 				fazer_ataque_jogador(jogador, oponente, numero_oponente, monstro_escolhido, menu_escolha_ataque(jogador, monstro_escolhido));
@@ -259,7 +259,16 @@ void escolhas_pre_combate_jogador(Personagem& jogador, Personagem oponente[NUMER
 				matar_oponente(jogador, oponente, numero_oponente);
 		}
 
-	if()
+	if (jogador.pokemon[monstro_escolhido].vida >= NADA)
+	{
+		perdeu_monstro();
+		escolhas_pre_combate_jogador(jogador, oponente, numero_oponente);
+	}
+	else
+	{
+		venceu_batalha();
+		listar_status_pokemon_jogador(jogador, "Jogador");
+	}
 }
 
 void iniciar_combate_oponente(Personagem& jogador, Personagem oponente[NUMERO_OPONENTES], int numero_oponente)
