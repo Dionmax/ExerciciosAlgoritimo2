@@ -133,7 +133,12 @@ void movimentar_oponentes(Personagem oponente[NUMERO_OPONENTES], int linhaJogado
 		mover_oponentes(linhaJogador, colunaJogador, oponente[indice].linha[indice], oponente[indice].coluna[indice]);
 }
 
-void executar_acao(Personagem oponente[NUMERO_OPONENTES])
+void verificar_possivel_batalha(Personagem& jogador, Personagem& oponente)
+{
+
+}
+
+void iniciar_combate_oponente(Personagem& jogador, Personagem& oponente)
 {
 
 }
