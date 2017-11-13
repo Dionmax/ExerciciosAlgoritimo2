@@ -31,6 +31,8 @@ struct Golpe
 
 	int poder,
 		utilizacoes;
+
+	int utilizacoes_iniciais = utilizacoes;
 };
 
 struct Pokemon
@@ -46,7 +48,7 @@ struct Pokemon
 
 	Golpe golpes[NUMERO_GOLPES];
 
-	 int vida_inicial = vida;
+	int vida_inicial = vida;
 };
 
 struct Personagem

@@ -129,17 +129,39 @@ int menu_escolha_ataque(Personagem jogador, int numero_monstro)
 	return escolha(NUMERO_GOLPES);
 }
 
-void dano_causado(int dano)
+void dano_causado(string quem, int dano)
 {
-	cout << "Causou " << dano << " de dano." << endl;
+	cout << quem << " Causou " << dano << " de dano." << endl;
 }
 
 void perdeu_monstro()
 {
-	cout << "Você perdeu seu monstro!!" << endl;
+	cout << "------------------------Você perdeu seu monstro!!--------------------------" << endl;
 }
 
 void venceu_batalha()
 {
-	cout << "Você venceu essa batalha!!" << endl;
+	cout << "--------------------------Você venceu essa batalha!!-------------------------" << endl;
+}
+
+void mostrar_vida_restante(Personagem jogador, int numero_monstro)
+{
+	cout << "Vida restante "<< jogador.pokemon[numero_monstro].vida << endl << endl;
+}
+
+int FIM()
+{
+	return 0;
+}
+
+void fim_de_jogo()
+{
+	system("cls");
+	cout << "Game Over";
+	FIM();
+}
+
+void vida_reustaurada()
+{
+	cout << "Vida Reustaurada!" << endl << endl;
 }

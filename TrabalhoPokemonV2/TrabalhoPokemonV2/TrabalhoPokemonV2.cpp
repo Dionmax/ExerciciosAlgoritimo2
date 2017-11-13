@@ -47,7 +47,7 @@ void andamento_jogo()
 	{
 		escrever_mapa();
 
-		movimentar_jogador(Jogador.linha[0], Jogador.coluna[0]);
+		movimentar_jogador(Jogador.linha[0], Jogador.coluna[0],Jogador);
 
 		movimentar_oponentes(oponente, Jogador.linha[0], Jogador.coluna[0]);
 
