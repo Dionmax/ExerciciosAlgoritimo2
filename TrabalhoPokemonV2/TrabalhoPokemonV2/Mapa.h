@@ -8,7 +8,7 @@
 
 using namespace std;
 
-#define TAMANHO_MATRIZ_PRINCIPAL 17
+#define TAMANHO_MATRIZ_PRINCIPAL 20
 #define JOGADOR 'P'
 #define OPONENTE 'E'
 #define LIDER_GINASIO 'L'

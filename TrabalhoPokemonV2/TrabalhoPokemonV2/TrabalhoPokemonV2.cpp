@@ -15,9 +15,7 @@ using namespace std;
 
 void teste2()
 {
-	int a = rand() % 20;
 
-	cout << a;
 }
 
 void andamento_jogo()
@@ -32,6 +30,10 @@ void andamento_jogo()
 	gerar_mapa();
 
 	atribuir_mostros(mostros_jogo);
+
+	mostrar_status_monstros(mostros_jogo);
+
+	system("cls");
 
 	mapa[linha][coluna] = JOGADOR;
 
@@ -57,6 +59,8 @@ int main()
 	srand(time(0));
 
 	andamento_jogo();
+
+	//teste2();
 
 	cin.get();
 	cin.get();
