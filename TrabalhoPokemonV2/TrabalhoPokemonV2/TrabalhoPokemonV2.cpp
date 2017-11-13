@@ -13,17 +13,25 @@
 
 using namespace std;
 
-void teste()
+void teste2()
 {
-	gerar_mapa();
+	int a = rand() % 20;
 
+	cout << a;
+}
+
+void andamento_jogo()
+{
 	int linha = 7,
 		coluna = 7;
 
-	int linha1 = 1,
-		coluna1 = 1;
-
 	Personagem oponente[NUMERO_OPONENTES];
+
+	Pokemon mostros_jogo;
+
+	gerar_mapa();
+
+	atribuir_mostros(mostros_jogo);
 
 	mapa[linha][coluna] = JOGADOR;
 
@@ -37,7 +45,7 @@ void teste()
 
 		movimentar_jogador(linha, coluna);
 
-		//	movimentar_oponentes(oponente,linha, coluna);
+		movimentar_oponentes(oponente, linha, coluna);
 
 		system("cls");
 	}
@@ -48,7 +56,7 @@ int main()
 {
 	srand(time(0));
 
-	teste();
+	andamento_jogo();
 
 	cin.get();
 	cin.get();

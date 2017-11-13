@@ -132,3 +132,8 @@ void movimentar_oponentes(Personagem oponente[NUMERO_OPONENTES], int linhaJogado
 	for (int indice = 0; indice < NUMERO_OPONENTES; indice++)
 		mover_oponentes(linhaJogador, colunaJogador, oponente[indice].linha[indice], oponente[indice].coluna[indice]);
 }
+
+void executar_acao(Personagem oponente[NUMERO_OPONENTES])
+{
+
+}
