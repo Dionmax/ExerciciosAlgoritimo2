@@ -8,5 +8,12 @@ using namespace std;
 
 struct Usuarios
 {
-	string nome;
+	string nome_login,
+		nome_completo;
+
+	char genero;
+
+	int idade,
+		senha,
+		confirmacao_senha;
 };
