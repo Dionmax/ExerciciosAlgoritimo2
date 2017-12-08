@@ -12,22 +12,40 @@ using namespace std;
 void pedir_infomacoes_usuarios(Usuarios *usuario, int numero_usuario)
 {
 	solicitar_nome_login();
-	usuario[numero_usuario].nome_login;
+	cin >> usuario[numero_usuario].nome_login;
+
+	quebra_de_linha();
 
 	do
 	{
 		solicitar_senha();
-		usuario[numero_usuario].senha;
+		cin >> usuario[numero_usuario].senha;
+
+		quebra_de_linha();
 
 		confirmacao_senha();
-		usuario[numero_usuario].confirmacao_senha;
+		cin >> usuario[numero_usuario].confirmacao_senha;
+
+		quebra_de_linha();
 
 		if (!verificar_igualdade(usuario[numero_usuario].senha, usuario[numero_usuario].confirmacao_senha))
 			mensagem_senhas_diferentes();
 
 	} while (!verificar_igualdade(usuario[numero_usuario].senha, usuario[numero_usuario].confirmacao_senha));
 
+	solicitar_nome_exibicao();
+	cin >> usuario[numero_usuario].nome_completo;
 
+	do
+	{
+		solicitar_idade();
+		cin >> usuario[numero_usuario].idade;
+	} while (true);
+
+	//Verificar idade valida
+
+	solicitar_sexo();
+	cin >> usuario[numero_usuario].genero;
 }
 
 void criar_novo_usuario(Usuarios *usuario, int &quantidade_usuarios)
