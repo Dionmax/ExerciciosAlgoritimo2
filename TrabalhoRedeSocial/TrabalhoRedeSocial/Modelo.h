@@ -19,7 +19,7 @@ bool verificar_igualdade(T objeto_um, T objeto_dois)
 }
 
 template <typename T>
-T copiar_array(T *array_primario, T *array_copiado, int tamanho)
+void copiar_array(T *array_primario, T *array_copiado, int tamanho)
 {
 	for (int indice = 0; indice < tamanho; indice++)
 		array_copiado[indice] = array_primario[indice];
@@ -33,6 +33,5 @@ struct Usuarios
 	char genero;
 
 	int idade,
-		senha,
-		confirmacao_senha;
+		senha;
 };
