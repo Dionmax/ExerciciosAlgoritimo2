@@ -58,5 +58,9 @@ void solicitar_sexo_escrito()
 	cout << "Digite seu sexo: " << endl;
 }
 
+//if (typeid(x).name() == typeid(int).name())
+//cout << "INT";
+
+
 
 

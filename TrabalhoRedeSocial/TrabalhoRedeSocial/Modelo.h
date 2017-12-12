@@ -7,6 +7,17 @@
 
 using namespace std;
 
+struct Usuarios
+{
+	string nome_login = " ",
+		nome_completo = " ",
+		senha = " ";
+
+	char genero = ' ';
+
+	int idade = 0;
+};
+
 template <typename T>
 bool verificar_igualdade(T objeto_um, T objeto_dois)
 {
@@ -25,13 +36,4 @@ void copiar_array(T *array_primario, T *array_copiado, int tamanho)
 		array_copiado[indice] = array_primario[indice];
 }
 
-struct Usuarios
-{
-	string nome_login,
-		nome_completo;
 
-	char genero;
-
-	int idade,
-		senha;
-};

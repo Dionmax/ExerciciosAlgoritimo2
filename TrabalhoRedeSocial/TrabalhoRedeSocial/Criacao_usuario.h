@@ -4,7 +4,7 @@
 #include <string>
 #include <stdio.h>
 #include <iostream>
-
+#include <typeinfo.h>
 #include "Modelo.h"
 
 const int IDADE_MINIMA = 18;
@@ -15,8 +15,9 @@ bool validar_idade(int idade)
 {
 	bool verificador = false;
 
-	if (idade >= IDADE_MINIMA)
-		verificador = true;
+	//if (typeid(idade).name() == typeid(int).name())
+		if (idade >= IDADE_MINIMA)
+			verificador = true;
 
 	return verificador;
 }
@@ -27,8 +28,7 @@ int entrada_idade()
 
 	do
 	{
-		solicitar_idade_escrito();
-		cin >> idade;
+		bool passou = true;
 
 		if (!validar_idade(idade))
 			mensagem_menor_de_idade();
@@ -38,10 +38,10 @@ int entrada_idade()
 	return idade;
 }
 
-int entrada_senha()
+string entrada_senha()
 {
-	int senha = 0,
-		confirmação = 0;
+	string senha = " ",
+		confirmação = "";
 
 	do
 	{
@@ -73,7 +73,7 @@ void pedir_infomacoes_usuarios(Usuarios *usuario, int numero_usuario)
 	solicitar_nome_exibicao_escrito();
 	cin >> usuario[numero_usuario].nome_completo;
 
-	// idade
+	usuario[numero_usuario].idade = entrada_idade();
 
 	solicitar_sexo_escrito();
 	cin >> usuario[numero_usuario].genero;
@@ -81,21 +81,21 @@ void pedir_infomacoes_usuarios(Usuarios *usuario, int numero_usuario)
 
 void criar_novo_usuario(Usuarios *usuario, int &quantidade_usuarios)
 {
-	Usuarios *array_aux_um;
+	Usuarios *array_aux = new Usuarios[quantidade_usuarios];
 
-	quantidade_usuarios += 1;
+	copiar_array(usuario, array_aux, quantidade_usuarios);
 
-	array_aux_um = new Usuarios[quantidade_usuarios];
+	quantidade_usuarios++;
 
-	//Pedir Informações do usuario
+	usuario = new Usuarios[quantidade_usuarios];
 
-	copiar_array(array_aux_um, usuario, quantidade_usuarios);
+	copiar_array(array_aux, usuario, quantidade_usuarios - 1);
+
+	pedir_infomacoes_usuarios(usuario, quantidade_usuarios - 1);
 }
 
-void controle_usuarios()
+void controle_usuarios(Usuarios *usuario)
 {
-	Usuarios *usuario = new Usuarios[0];
-
 	int quantidade_usuarios = 0;
 
 	criar_novo_usuario(usuario, quantidade_usuarios);
