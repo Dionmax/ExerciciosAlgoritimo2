@@ -4,7 +4,7 @@
 #include <string>
 #include <stdio.h>
 #include <iostream>
-#include <typeinfo.h>
+
 #include "Modelo.h"
 
 const int IDADE_MINIMA = 18;
@@ -15,20 +15,20 @@ bool validar_idade(int idade)
 {
 	bool verificador = false;
 
-	//if (typeid(idade).name() == typeid(int).name())
-		if (idade >= IDADE_MINIMA)
-			verificador = true;
+	if (idade >= IDADE_MINIMA)
+		verificador = true;
 
 	return verificador;
 }
 
 int entrada_idade()
 {
-	int idade = 0;
+	int idade;
 
 	do
 	{
-		bool passou = true;
+		solicitar_idade_escrito();
+		ler(idade);
 
 		if (!validar_idade(idade))
 			mensagem_menor_de_idade();
@@ -40,16 +40,16 @@ int entrada_idade()
 
 string entrada_senha()
 {
-	string senha = " ",
-		confirmação = "";
+	string senha,
+		confirmação;
 
 	do
 	{
 		solicitar_senha_escrito();
-		cin >> senha;
+		ler(senha);
 
 		confirmacao_senha_escrito();
-		cin >> confirmação;
+		ler(confirmação);
 
 		if (!verificar_igualdade(senha, confirmação))
 			mensagem_senhas_diferentes_escrito();
@@ -61,43 +61,59 @@ string entrada_senha()
 
 void pedir_infomacoes_usuarios(Usuarios *usuario, int numero_usuario)
 {
-	solicitar_nome_login_escrito();
-	cin >> usuario[numero_usuario].nome_login;
+	/*solicitar_nome_login_escrito();
+	ler(usuario[numero_usuario].nome_login);*/
 
-	quebra_de_linha();
+	//quebra_de_linha();
 
-	usuario[numero_usuario].senha = entrada_senha();
+	//usuario[numero_usuario].senha = entrada_senha();
 
-	quebra_de_linha();
+	//quebra_de_linha();
 
-	solicitar_nome_exibicao_escrito();
-	cin >> usuario[numero_usuario].nome_completo;
+	//solicitar_nome_exibicao_escrito();
+	//ler(usuario[numero_usuario].nome_completo);
 
-	usuario[numero_usuario].idade = entrada_idade();
+	//quebra_de_linha();
+
+	//usuario[numero_usuario].idade = entrada_idade();
 
 	solicitar_sexo_escrito();
-	cin >> usuario[numero_usuario].genero;
+	ler(usuario[numero_usuario].genero);
 }
+//
+//void criar_novo_usuario(Usuarios *usuario, int &quantidade_usuarios)
+//{
+//	Usuarios *array_aux;
+//
+//	array_aux = new Usuarios[quantidade_usuarios];
+//
+//	copiar_array(usuario, array_aux, quantidade_usuarios);
+//
+//	quantidade_usuarios += 1;
+//
+//	usuario = new Usuarios[quantidade_usuarios];
+//
+//	copiar_array(array_aux, usuario, quantidade_usuarios - 1);
+//
+//	pedir_infomacoes_usuarios(usuario, quantidade_usuarios - 1);
+//}
 
 void criar_novo_usuario(Usuarios *usuario, int &quantidade_usuarios)
 {
-	Usuarios *array_aux = new Usuarios[quantidade_usuarios];
+	Usuarios *array_aux;
 
-	copiar_array(usuario, array_aux, quantidade_usuarios);
+	array_aux = new Usuarios[quantidade_usuarios];
 
-	quantidade_usuarios++;
+	for (int indice = 0; indice < quantidade_usuarios; indice++)
+		array_aux[indice] = usuario[indice];
+
+	quantidade_usuarios += 1;
 
 	usuario = new Usuarios[quantidade_usuarios];
 
-	copiar_array(array_aux, usuario, quantidade_usuarios - 1);
+	for (int indice = 0; indice < quantidade_usuarios - 1; indice++)
+		usuario[indice] = array_aux[indice];
 
 	pedir_infomacoes_usuarios(usuario, quantidade_usuarios - 1);
-}
-
-void controle_usuarios(Usuarios *usuario)
-{
-	int quantidade_usuarios = 0;
-
-	criar_novo_usuario(usuario, quantidade_usuarios);
 }
 
