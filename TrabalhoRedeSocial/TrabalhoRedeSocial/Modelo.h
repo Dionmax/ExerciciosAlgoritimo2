@@ -6,9 +6,12 @@
 #include <iostream>
 #include <typeinfo.h>
 
+
 using namespace std;
 
 const int TAMANHO_POSTAGEM = 280;
+
+//const int TAMANHO_INFORMACAO = 100;
 
 struct Timeline
 {
@@ -19,47 +22,57 @@ struct Timeline
 
 struct Usuarios
 {
-	string nome_login = " ",
-		nome_completo = " ",
-		senha = " ";
+	char nome_login[100],
+		nome_completo[100],
+		senha[100];
 
-	char genero = ' ';
+	char genero;
 
 	int idade = 0;
 };
 
 template <typename T>
-bool verificar_igualdade(T objeto_um, T objeto_dois)
+bool verificar_igualdade(T *objeto_um, T *objeto_dois)
 {
-	bool verificador = false;
+	bool verificador = true;
 
-	if (objeto_um == objeto_dois)
-		verificador = true;
+	for (int indice = 0; indice < 100 && verificador == true; indice++)
+		if (objeto_um[indice] != objeto_dois[indice])
+			verificador = false;
 
 	return verificador;
 }
 
 template <typename T>
-void copiar_array(T *array_primario, T *array_copiado, int tamanho)
+void copiar_array(T *array_origem, T *array_destino, int tamanho)
 {
 	for (int indice = 0; indice < tamanho; indice++)
-		array_copiado[indice] = array_primario[indice];
+		array_origem[indice] = array_destino[indice];
 }
 
-template <typename T>
-T ler(T &objeto)
+void convert_string_to_char(char *objeto, string palavra, int tamanho)
 {
-	cin >> objeto;
+	for (int indice = 0; indice < tamanho; indice++)
+		objeto[indice] = palavra[indice];
 
-	return objeto;
+	cout << "2 = " << objeto << endl;
+	cout << "2 t = " << strlen(objeto) << endl;
 }
 
-template <typename T>
-T ler_texto(T &objeto)
+void ler_string_to_char(char *objeto)
 {
-	cin.getline();
+	string objeto_texto;
 
-	return objeto;
+	getline(cin, objeto_texto);
+
+	objeto = new char[objeto_texto.length() + 1];
+
+	/*cout << "1 = " << objeto << endl;*/
+	//cout << "1 t = " << objeto_texto.length() << endl;
+
+	//convert_string_to_char(objeto, objeto_texto, objeto_texto.length());
+
+	//strcpy(objeto, objeto_texto.c_str());
 }
 
 int selecionar_escolha(int numero_escolhas)
@@ -71,6 +84,7 @@ int selecionar_escolha(int numero_escolhas)
 	do
 	{
 		cin >> escolha;
+		cin.get();
 
 		if (escolha > 0 && escolha <= numero_escolhas)
 			verificacao = false;

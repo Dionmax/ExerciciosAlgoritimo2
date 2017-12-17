@@ -40,7 +40,7 @@ void confirmacao_senha_escrito()
 
 void mensagem_senhas_diferentes_escrito()
 {
-	cout << "Senhas não conferem!" << endl;
+	cout << "Senhas não conferem!" << endl << endl;
 }
 
 void criador_trabalho_escrito()
@@ -93,6 +93,32 @@ void mensagem_erro_escolha_escrito()
 //if (typeid(x).name() == typeid(int).name())
 //cout << "INT";
 // cout << "" << endl;
+
+//void teste()
+//{
+//	char *nome = new char[0];
+//
+//	ler_string_to_char(nome);
+//
+//	cout << "3 = " << nome << endl;
+//	cout << "3 Tamanho: " << strlen(nome);
+//}
+//
+//void teste1(char *nome_zu)
+//{
+//	string nome;
+//
+//	getline(cin, nome);
+//
+//	nome_zu = new char[size(nome) + 1];
+//
+//	memcpy(nome_zu, nome.c_str(), size(nome) + 1);
+//
+//	cout << endl << "Saida: " << nome_zu;
+//	cout << endl << "Saida T: " << strlen(nome_zu);
+//	cout << endl << "Tamanho: " << size(nome);
+//}
+//
 
 
 
