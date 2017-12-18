@@ -32,8 +32,6 @@ void entrada_idade(int &idade)
 			mensagem_menor_de_idade();
 
 	} while (!validar_idade(idade));
-
-	//return idade;
 }
 
 void entrada_senha(char *senha_nova)
@@ -90,11 +88,11 @@ Usuarios criar_novo_usuario(Usuarios *usuario, int &quantidade_usuarios)
 
 	copiar_array(array_aux, usuario, quantidade_usuarios - 1);
 
-	//usuario = (Usuarios*)realloc(usuario, quantidade_usuarios*sizeof(int));
-	//realocar_espaco<Usuarios>(usuario, quantidade_usuarios);
-
 	pedir_infomacoes_usuarios(usuario, quantidade_usuarios - 1);
 
-	return usuario[quantidade_usuarios - 1];
+	return *usuario;
 }
+
+//usuario = (Usuarios*)realloc(usuario, quantidade_usuarios*sizeof(int));
+//realocar_espaco<Usuarios>(usuario, quantidade_usuarios);
 

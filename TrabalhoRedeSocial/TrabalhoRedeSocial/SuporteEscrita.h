@@ -101,7 +101,7 @@ void mensagem_erro_escolha_escrito()
 
 void usuario_nao_achado_escrito()
 {
-	cout << "Usuario não encontrado!" << endl;
+	cout << "Usuario não encontrado!" << endl << endl;
 }
 
 void menu_timeline_escrito()
@@ -111,36 +111,23 @@ void menu_timeline_escrito()
 	cout << "3 - Sair." << endl;
 }
 
+void escrever_postagens_escrito(Timeline *post, int quantidade_post)
+{
+	for (int indice = 0; indice < quantidade_post; indice++)
+	{
+		cout << "Post criado por: ";
+
+		cout << post[indice].criador_post;
+
+		cout << endl << endl;
+		cout << post[indice].postagens << endl;
+
+		quebra_de_linha();
+	}
+}
+
 //if (typeid(x).name() == typeid(int).name())
 //cout << "INT";
 // cout << "" << endl;
-
-//void teste()
-//{
-//	char *nome = new char[0];
-//
-//	ler_string_to_char(nome);
-//
-//	cout << "3 = " << nome << endl;
-//	cout << "3 Tamanho: " << strlen(nome);
-//}
-//
-//void teste1(char *nome_zu)
-//{
-//	string nome;
-//
-//	getline(cin, nome);
-//
-//	nome_zu = new char[size(nome) + 1];
-//
-//	memcpy(nome_zu, nome.c_str(), size(nome) + 1);
-//
-//	cout << endl << "Saida: " << nome_zu;
-//	cout << endl << "Saida T: " << strlen(nome_zu);
-//	cout << endl << "Tamanho: " << size(nome);
-//}
-//
-
-
 
 

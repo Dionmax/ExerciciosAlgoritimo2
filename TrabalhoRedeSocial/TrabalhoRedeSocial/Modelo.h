@@ -16,7 +16,9 @@ const int TAMANHO_POSTAGEM = 280;
 
 struct Timeline
 {
-	char *criador_post = new char[0];
+	char *criador_post;
+
+	//string criador_post;
 
 	char postagens[TAMANHO_POSTAGEM];
 };
@@ -76,10 +78,8 @@ int total_array_preechido_char(char *array)
 	int total = 0;
 
 	for (int indice = 0; indice < 100; indice++)
-	{
 		if (array[indice] >= 20 && array[indice] <= 122)
 			total++;
-	}
 
 	return total;
 }
@@ -136,7 +136,8 @@ T realocar_espaco(T *objeto, int &tamanho_objeto)
 //	cout << "2 = " << objeto << endl;
 //	cout << "2 t = " << strlen(objeto) << endl;
 //}
-//
+
+
 //void ler_string_to_char(char *objeto)
 //{
 //	string objeto_texto;
