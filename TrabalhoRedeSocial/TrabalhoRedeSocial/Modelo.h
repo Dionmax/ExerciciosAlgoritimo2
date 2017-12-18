@@ -18,8 +18,6 @@ struct Timeline
 {
 	char *criador_post;
 
-	//string criador_post;
-
 	char postagens[TAMANHO_POSTAGEM];
 };
 
@@ -66,7 +64,7 @@ int selecionar_escolha(int numero_escolhas)
 
 		if (escolha > 0 && escolha <= numero_escolhas)
 			verificacao = false;
-		//else
+		else;
 			//mensagem_erro_escolha_escrito();
 
 	} while (verificacao);
