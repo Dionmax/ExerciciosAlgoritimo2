@@ -48,7 +48,7 @@ void entrada_senha(char *senha_nova)
 		confirmacao_senha_escrito();
 		cin.getline(confirmacao, 100);
 
-		if (!verificar_igualdade(senha_nova, confirmacao,total_array_preechido_char(senha_nova)))
+		if (!verificar_igualdade(senha_nova, confirmacao, total_array_preechido_char(senha_nova)))
 			mensagem_senhas_diferentes_escrito();
 
 	} while (!verificar_igualdade(senha_nova, confirmacao, total_array_preechido_char(senha_nova)));
