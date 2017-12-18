@@ -21,10 +21,8 @@ bool validar_idade(int idade)
 	return verificador;
 }
 
-int entrada_idade()
+void entrada_idade(int &idade)
 {
-	int idade;
-
 	do
 	{
 		solicitar_idade_escrito();
@@ -35,32 +33,25 @@ int entrada_idade()
 
 	} while (!validar_idade(idade));
 
-	return idade;
+	//return idade;
 }
 
 void entrada_senha(char *senha_nova)
 {
-	char senha[100];
-	char confirmacao[100];
+	char *confirmacao = new char[100];
 
 	do
 	{
 		solicitar_senha_escrito();
-		cin.getline(senha, 100);
+		cin.getline(senha_nova, 100);
 
 		confirmacao_senha_escrito();
 		cin.getline(confirmacao, 100);
 
-		if (!verificar_igualdade(senha, confirmacao,total_array_preechido_char(senha)))
+		if (!verificar_igualdade(senha_nova, confirmacao,total_array_preechido_char(senha_nova)))
 			mensagem_senhas_diferentes_escrito();
 
-	} while (!verificar_igualdade(senha, confirmacao, total_array_preechido_char(senha)));
-
-	copiar_array(senha, senha_nova, 100);
-
-	//return *senha_nova;
-
-	 //senha_nova = senha;
+	} while (!verificar_igualdade(senha_nova, confirmacao, total_array_preechido_char(senha_nova)));
 }
 
 void pedir_infomacoes_usuarios(Usuarios *usuario, int numero_usuario)
@@ -79,7 +70,7 @@ void pedir_infomacoes_usuarios(Usuarios *usuario, int numero_usuario)
 
 	quebra_de_linha();
 
-	usuario[numero_usuario].idade = entrada_idade();
+	entrada_idade(usuario[numero_usuario].idade);
 
 	solicitar_sexo_escrito();
 	cin >> usuario[numero_usuario].genero;

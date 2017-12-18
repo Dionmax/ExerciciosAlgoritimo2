@@ -23,11 +23,11 @@ struct Timeline
 
 struct Usuarios
 {
-	char nome_login[100] = {'*'},
+	char nome_login[100],
 		nome_completo[100],
 		senha[100];
 
-	char genero;
+	char genero[10];
 
 	int idade = 0;
 };

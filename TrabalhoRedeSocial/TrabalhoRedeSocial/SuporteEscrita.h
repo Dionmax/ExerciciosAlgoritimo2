@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void escreve_informações_usuarios_escrito(Usuarios *usuario, int numero_usuario)
+void escreve_informações_usuarios_escrito(Usuarios usuario[], int numero_usuario)
 {
 	cout << "Nome Login: " << usuario[numero_usuario].nome_login << endl;
 
@@ -97,6 +97,11 @@ void menu_login_criar()
 void mensagem_erro_escolha_escrito()
 {
 	cout << "Escolha inválida. " << endl;
+}
+
+void usuario_nao_achado_escrito()
+{
+	cout << "Usuario não encontrado!" << endl;
 }
 
 //if (typeid(x).name() == typeid(int).name())

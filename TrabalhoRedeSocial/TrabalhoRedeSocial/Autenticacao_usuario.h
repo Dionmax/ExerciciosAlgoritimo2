@@ -24,3 +24,16 @@ int buscar_usuario_login(Usuarios *usuario, int tamanho, char *nome_usuario)
 	return posicao;
 }
 
+bool fazer_login(Usuarios *usuario, int numero_usuario)
+{
+	char *senha = new char[100];
+
+	solicitar_senha_escrito();
+	cin.getline(senha, 100);
+
+	if (!verificar_igualdade(usuario[numero_usuario].senha, senha, total_array_preechido_char(senha)))
+		mensagem_senhas_diferentes_escrito();
+
+	return verificar_igualdade(usuario[numero_usuario].senha, senha, total_array_preechido_char(senha));
+}
+
