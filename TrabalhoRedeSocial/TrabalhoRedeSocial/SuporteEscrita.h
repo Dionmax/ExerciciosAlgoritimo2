@@ -113,17 +113,20 @@ void menu_timeline_escrito()
 
 void escrever_postagens_escrito(Timeline *post, int quantidade_post)
 {
-	for (int indice = 0; indice < quantidade_post; indice++)
-	{
-		cout << "Post criado por: ";
+	if (quantidade_post == 0)
+		cout << "Nenhuma Postagem." << endl;
+	else
+		for (int indice = 0; indice < quantidade_post; indice++)
+		{
+			cout << "Post criado por: ";
 
-		cout << post[indice].criador_post;
+			cout << post[indice].criador_post;
 
-		cout << endl << endl;
-		cout << post[indice].postagens << endl;
+			cout << endl << endl;
+			cout << post[indice].postagens << endl;
 
-		quebra_de_linha();
-	}
+			quebra_de_linha();
+		}
 }
 void escreva_postagem()
 {
