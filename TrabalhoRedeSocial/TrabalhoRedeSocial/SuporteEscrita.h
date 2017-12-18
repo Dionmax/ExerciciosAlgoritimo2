@@ -5,12 +5,21 @@
 #include <stdio.h>
 #include <iostream>
 
+#include "Modelo.h"
+
 using namespace std;
 
-template<typename T>
-void escrever(T algo)
+void escreve_informações_usuarios_escrito(Usuarios *usuario, int numero_usuario)
 {
-	cout << algo << endl;
+	cout << "Nome Login: " << usuario[numero_usuario].nome_login << endl;
+
+	cout << "Nome completo: " << usuario[numero_usuario].nome_completo << endl;
+
+	cout << "Senha: " << usuario[numero_usuario].senha << endl;
+
+	cout << "Idade: " << usuario[numero_usuario].idade << endl;
+
+	cout << "Genero: " << usuario[numero_usuario].genero << endl;
 }
 
 void encerramento_escrito()

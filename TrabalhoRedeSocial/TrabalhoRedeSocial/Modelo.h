@@ -6,6 +6,7 @@
 #include <iostream>
 #include <typeinfo.h>
 
+#include"SuporteEscrita.h"
 
 using namespace std;
 
@@ -22,7 +23,7 @@ struct Timeline
 
 struct Usuarios
 {
-	char nome_login[100],
+	char nome_login[100] = {'*'},
 		nome_completo[100],
 		senha[100];
 
@@ -50,31 +51,6 @@ void copiar_array(T *array_origem, T *array_destino, int tamanho)
 		array_origem[indice] = array_destino[indice];
 }
 
-void convert_string_to_char(char *objeto, string palavra, int tamanho)
-{
-	for (int indice = 0; indice < tamanho; indice++)
-		objeto[indice] = palavra[indice];
-
-	cout << "2 = " << objeto << endl;
-	cout << "2 t = " << strlen(objeto) << endl;
-}
-
-void ler_string_to_char(char *objeto)
-{
-	string objeto_texto;
-
-	getline(cin, objeto_texto);
-
-	objeto = new char[objeto_texto.length() + 1];
-
-	/*cout << "1 = " << objeto << endl;*/
-	//cout << "1 t = " << objeto_texto.length() << endl;
-
-	//convert_string_to_char(objeto, objeto_texto, objeto_texto.length());
-
-	//strcpy(objeto, objeto_texto.c_str());
-}
-
 int selecionar_escolha(int numero_escolhas)
 {
 	int escolha = 0;
@@ -88,11 +64,10 @@ int selecionar_escolha(int numero_escolhas)
 
 		if (escolha > 0 && escolha <= numero_escolhas)
 			verificacao = false;
-		else
-			mensagem_erro_escolha_escrito();
+		//else
+			//mensagem_erro_escolha_escrito();
 
 	} while (verificacao);
-
 	return escolha;
 }
 
@@ -124,4 +99,30 @@ int selecionar_escolha(int numero_escolhas)
 //
 //	return verificacao;
 //}
+
+//void convert_string_to_char(char *objeto, string palavra, int tamanho)
+//{
+//	for (int indice = 0; indice < tamanho; indice++)
+//		objeto[indice] = palavra[indice];
+//
+//	cout << "2 = " << objeto << endl;
+//	cout << "2 t = " << strlen(objeto) << endl;
+//}
+//
+//void ler_string_to_char(char *objeto)
+//{
+//	string objeto_texto;
+//
+//	getline(cin, objeto_texto);
+//
+//	objeto = new char[objeto_texto.length() + 1];
+//
+//	/*cout << "1 = " << objeto << endl;*/
+//	//cout << "1 t = " << objeto_texto.length() << endl;
+//
+//	//convert_string_to_char(objeto, objeto_texto, objeto_texto.length());
+//
+//	//strcpy(objeto, objeto_texto.c_str());
+//}
+
 

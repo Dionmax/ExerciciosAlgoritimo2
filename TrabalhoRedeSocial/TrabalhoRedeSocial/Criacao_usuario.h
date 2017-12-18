@@ -57,6 +57,10 @@ void entrada_senha(char *senha_nova)
 	} while (!verificar_igualdade(senha, confirmacao));
 
 	copiar_array(senha, senha_nova, 100);
+
+	//return *senha_nova;
+
+	 //senha_nova = senha;
 }
 
 void pedir_infomacoes_usuarios(Usuarios *usuario, int numero_usuario)
@@ -66,24 +70,22 @@ void pedir_infomacoes_usuarios(Usuarios *usuario, int numero_usuario)
 
 	quebra_de_linha();
 
-	cout << usuario[numero_usuario].nome_login << endl;
-
-	//entrada_senha(usuario[numero_usuario].senha);
+	entrada_senha(usuario[numero_usuario].senha);
 
 	quebra_de_linha();
 
 	solicitar_nome_exibicao_escrito();
-	//cin.getline(usuario[numero_usuario].nome_completo, 100);
+	cin.getline(usuario[numero_usuario].nome_completo, 100);
 
 	quebra_de_linha();
 
-	///usuario[numero_usuario].idade = entrada_idade();
+	usuario[numero_usuario].idade = entrada_idade();
 
 	solicitar_sexo_escrito();
-	//cin >> usuario[numero_usuario].genero;
+	cin >> usuario[numero_usuario].genero;
 }
 
-void criar_novo_usuario(Usuarios *usuario, int &quantidade_usuarios)
+Usuarios criar_novo_usuario(Usuarios *usuario, int &quantidade_usuarios)
 {
 	Usuarios *array_aux;
 
@@ -97,6 +99,10 @@ void criar_novo_usuario(Usuarios *usuario, int &quantidade_usuarios)
 
 	copiar_array(array_aux, usuario, quantidade_usuarios - 1);
 
+	//usuario = (Usuarios*)realloc(usuario, quantidade_usuarios*sizeof(int));
+
 	pedir_infomacoes_usuarios(usuario, quantidade_usuarios - 1);
+
+	return usuario[quantidade_usuarios - 1];
 }
 
