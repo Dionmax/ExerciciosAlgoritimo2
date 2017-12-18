@@ -9,10 +9,11 @@
 
 void escrever_novo_post(char *post)
 {
+	escreva_postagem();
 	cin.getline(post, TAMANHO_POSTAGEM);
 }
 
-char chegar_usuario_marcado(char * postagem)
+bool checar_usuario_marcado(char * postagem)
 {
 	bool achou = false;
 
@@ -36,6 +37,9 @@ Timeline criar_novo_post(char *nome_usuario, Timeline *posts, int &quantidade_po
 	copiar_array(array_aux, posts, quantidade_posts - 1);
 
 	escrever_novo_post(posts[quantidade_posts - 1].postagens);
+
+	if (checar_usuario_marcado(posts[quantidade_posts - 1].postagens))
+		cout << "Teste @@ Find" << endl; // Pareiiii aquiiiii ////
 
 	posts[quantidade_posts - 1].criador_post = new char[total_array_preechido_char(nome_usuario)+1];
 

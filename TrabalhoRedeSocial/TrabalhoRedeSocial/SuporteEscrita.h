@@ -125,6 +125,11 @@ void escrever_postagens_escrito(Timeline *post, int quantidade_post)
 		quebra_de_linha();
 	}
 }
+void escreva_postagem()
+{
+	cout << "Escreva sua Postagem: " << endl;
+}
+
 
 //if (typeid(x).name() == typeid(int).name())
 //cout << "INT";
