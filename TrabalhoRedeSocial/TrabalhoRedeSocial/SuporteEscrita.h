@@ -104,6 +104,13 @@ void usuario_nao_achado_escrito()
 	cout << "Usuario não encontrado!" << endl;
 }
 
+void menu_timeline_escrito()
+{
+	cout << "1 - Ver posts." << endl;
+	cout << "2 - Criar novo post. " << endl;
+	cout << "3 - Sair." << endl;
+}
+
 //if (typeid(x).name() == typeid(int).name())
 //cout << "INT";
 // cout << "" << endl;

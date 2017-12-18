@@ -16,7 +16,7 @@ const int TAMANHO_POSTAGEM = 280;
 
 struct Timeline
 {
-	string criador_post;
+	char *criador_post = new char[0];
 
 	char postagens[TAMANHO_POSTAGEM];
 };
