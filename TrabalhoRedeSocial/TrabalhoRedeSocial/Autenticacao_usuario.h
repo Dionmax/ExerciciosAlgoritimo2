@@ -18,7 +18,7 @@ int buscar_usuario_login(Usuarios *usuario, int tamanho, char *nome_usuario)
 	int posicao = NAO_ACHADO;
 
 	for (int indice = 0; indice < tamanho; indice++)
-		if (verificar_igualdade(usuario[indice].nome_login, nome_usuario))
+		if (verificar_igualdade(usuario[indice].nome_login, nome_usuario, total_array_preechido_char(nome_usuario)))
 			posicao = indice;
 
 	return posicao;

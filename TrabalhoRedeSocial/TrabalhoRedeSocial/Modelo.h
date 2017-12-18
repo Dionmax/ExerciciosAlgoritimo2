@@ -33,11 +33,11 @@ struct Usuarios
 };
 
 template <typename T>
-bool verificar_igualdade(T *objeto_um, T *objeto_dois)
+bool verificar_igualdade(T *objeto_um, T *objeto_dois, int tamanho)
 {
 	bool verificador = true;
 
-	for (int indice = 0; indice < 100 && verificador == true; indice++)
+	for (int indice = 0; indice < tamanho && verificador == true; indice++)
 		if (objeto_um[indice] != objeto_dois[indice])
 			verificador = false;
 
@@ -71,6 +71,18 @@ int selecionar_escolha(int numero_escolhas)
 	return escolha;
 }
 
+int total_array_preechido_char(char *array)
+{
+	int total = 0;
+
+	for (int indice = 0; indice < 100; indice++)
+	{
+		if (array[indice] >= 20 && array[indice] <= 122)
+			total++;
+	}
+
+	return total;
+}
 
 //template <typename T>
 //bool confimar_tipo(T objeto, char _const_tipo)

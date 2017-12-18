@@ -51,10 +51,10 @@ void entrada_senha(char *senha_nova)
 		confirmacao_senha_escrito();
 		cin.getline(confirmacao, 100);
 
-		if (!verificar_igualdade(senha, confirmacao))
+		if (!verificar_igualdade(senha, confirmacao,total_array_preechido_char(senha)))
 			mensagem_senhas_diferentes_escrito();
 
-	} while (!verificar_igualdade(senha, confirmacao));
+	} while (!verificar_igualdade(senha, confirmacao, total_array_preechido_char(senha)));
 
 	copiar_array(senha, senha_nova, 100);
 
