@@ -12,6 +12,17 @@ void escrever_novo_post(char *post)
 	cin.getline(post, TAMANHO_POSTAGEM);
 }
 
+char chegar_usuario_marcado(char * postagem)
+{
+	bool achou = false;
+
+	for (int indice = 0; indice < total_array_preechido_char(postagem); indice++)
+		if (postagem[indice] == '@')
+			achou = true;
+
+	return achou;
+}
+
 Timeline criar_novo_post(char *nome_usuario, Timeline *posts, int &quantidade_posts)
 {
 	Timeline *array_aux = new Timeline[quantidade_posts];
