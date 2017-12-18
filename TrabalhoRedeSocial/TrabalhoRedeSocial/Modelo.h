@@ -84,6 +84,22 @@ int total_array_preechido_char(char *array)
 	return total;
 }
 
+template <typename T>
+T realocar_espaco(T *objeto, int &tamanho_objeto)
+{
+	T *array_aux = new T[tamanho_objeto];
+
+	copiar_array(objeto, array_aux, tamanho_objeto);
+
+	tamanho_objeto += 1;
+
+	objeto = new T[tamanho_objeto];
+
+	copiar_array(array_aux, objeto, tamanho_objeto - 1);
+
+	return objeto[tamanho_objeto - 1];
+}
+
 //template <typename T>
 //bool confimar_tipo(T objeto, char _const_tipo)
 //{

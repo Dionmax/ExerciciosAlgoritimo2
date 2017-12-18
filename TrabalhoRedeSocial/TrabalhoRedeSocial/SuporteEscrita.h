@@ -106,7 +106,7 @@ void usuario_nao_achado_escrito()
 
 void menu_timeline_escrito()
 {
-	cout << "1 - Ver posts." << endl;
+	cout << "1 - Ver postagens." << endl;
 	cout << "2 - Criar novo post. " << endl;
 	cout << "3 - Sair." << endl;
 }

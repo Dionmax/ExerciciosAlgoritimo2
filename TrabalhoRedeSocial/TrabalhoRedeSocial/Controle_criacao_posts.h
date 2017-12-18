@@ -7,12 +7,33 @@
 
 #include "Modelo.h"
 
-void criar_novo_post(char *nome_usuario, Timeline *Posts, int &quantidade_posts)
+void escrever_novo_post(char *post)
 {
-	//ESTOU AQUI AGORA 12:30
+	cin.getline(post, TAMANHO_POSTAGEM);
+
+
 }
 
-void timeline_pots(Usuarios *usuario, int numero_usuario, Timeline *Posts, int &quantidade_posts)
+Timeline criar_novo_post(char *nome_usuario, Timeline *posts, int &quantidade_posts)
+{
+	Timeline *array_aux = new Timeline[quantidade_posts];
+
+	copiar_array(posts, array_aux, quantidade_posts);
+
+	quantidade_posts += 1;
+
+	posts = new Timeline[quantidade_posts];
+
+	copiar_array(array_aux, posts, quantidade_posts - 1);
+
+	escrever_novo_post(posts[quantidade_posts - 1].postagens);
+
+	posts[quantidade_posts].criador_post = nome_usuario;
+
+	return posts[quantidade_posts - 1];
+}
+
+void timeline_pots(Usuarios *usuario, int numero_usuario, Timeline *posts, int &quantidade_posts)
 {
 	do
 	{
@@ -24,7 +45,10 @@ void timeline_pots(Usuarios *usuario, int numero_usuario, Timeline *Posts, int &
 		case 1:
 			break;
 		case 2:
-			criar_novo_post();
+			posts[quantidade_posts - 1] = criar_novo_post(usuario[numero_usuario].nome_completo, posts, quantidade_posts);
+			break;
+		case 3:
+			return;
 		default:
 			break;
 		}

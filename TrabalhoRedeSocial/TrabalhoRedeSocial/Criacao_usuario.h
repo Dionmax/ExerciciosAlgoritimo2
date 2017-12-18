@@ -91,6 +91,7 @@ Usuarios criar_novo_usuario(Usuarios *usuario, int &quantidade_usuarios)
 	copiar_array(array_aux, usuario, quantidade_usuarios - 1);
 
 	//usuario = (Usuarios*)realloc(usuario, quantidade_usuarios*sizeof(int));
+	//realocar_espaco<Usuarios>(usuario, quantidade_usuarios);
 
 	pedir_infomacoes_usuarios(usuario, quantidade_usuarios - 1);
 
